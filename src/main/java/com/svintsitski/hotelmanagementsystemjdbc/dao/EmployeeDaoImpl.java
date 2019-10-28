@@ -3,7 +3,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.dao;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.model.EmployeeRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -30,9 +29,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public Employee findEmployeeById(int id) {
         String query = "SELECT * FROM employees WHERE id = ?";
-        RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<Employee>(Employee.class);
+        RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         Employee employee = jdbcTemplate.queryForObject(query, rowMapper, id);
-
+        System.out.println(employee.toString());
         return employee;
     }
 

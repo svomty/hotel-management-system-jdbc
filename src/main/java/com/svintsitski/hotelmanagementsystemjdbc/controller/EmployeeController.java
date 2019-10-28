@@ -34,6 +34,7 @@ public class EmployeeController {
         ModelAndView model = new ModelAndView();
 
         Employee employee = employeeService.findEmployeeById(id);
+        System.out.print(employee.toString());
         model.addObject("employeeForm", employee);
 
         model.setViewName("employee_form");
