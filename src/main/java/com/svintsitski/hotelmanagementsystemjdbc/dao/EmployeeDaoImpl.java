@@ -18,16 +18,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAll() {
         String query = "SELECT * from employees";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         List<Employee> list = jdbcTemplate.query(query, rowMapper);
-
         return list;
     }
 
     @Override
-    public Employee findEmployeeById(int id) {
+    public Employee findById(int id) {
         String query = "SELECT * FROM employees WHERE id = ?";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         Employee employee = jdbcTemplate.queryForObject(query, rowMapper, id);
@@ -36,21 +35,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void addEmployee(Employee employee) {
+    public void add(Employee employee) {
         String query = "INSERT INTO employees(id, фамилия, имя, отчество, пол, телефон, адрес, номер_паспорта) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, employee.getEmployeeId(), employee.getLastName(), employee.getFirstName(), employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(), employee.getPassportId());
 
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public void update(Employee employee) {
         String query = "UPDATE employees SET фамилия=?, имя=?, отчество=?, пол=?, телефон=?, адрес=?, номер_паспорта=? WHERE id=?";
         jdbcTemplate.update(query, employee.getLastName(), employee.getFirstName(), employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(), employee.getPassportId(), employee.getEmployeeId());
 
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void delete(int id) {
         String query = "DELETE FROM employees WHERE id=?";
         jdbcTemplate.update(query, id);
     }

@@ -5,13 +5,9 @@ import com.svintsitski.hotelmanagementsystemjdbc.model.*;
 import java.util.List;
 
 public interface EmployeeDao {
-    public List<Employee> getAllEmployees();
-
-    public Employee findEmployeeById(int id);
-
-    public void addEmployee(Employee employee);
-
-    public void updateEmployee(Employee employee);
-
-    public void deleteEmployee(int id);
+    List<Employee> getAll();
+    Employee findById(int id);
+    void add(Employee employee);
+    void update(Employee employee);
+    void delete(int id);
 }

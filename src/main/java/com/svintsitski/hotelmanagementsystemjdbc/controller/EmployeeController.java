@@ -22,7 +22,7 @@ public class EmployeeController {
     @RequestMapping(value= {"/", "/list"}, method= RequestMethod.GET)
     public ModelAndView getAllEmployees() {
         ModelAndView model = new ModelAndView();
-        List<Employee> list = employeeService.getAllEmployees();
+        List<Employee> list = employeeService.getAll();
 
         model.addObject("employee_list", list);
         model.setViewName("employee_list");
@@ -33,7 +33,7 @@ public class EmployeeController {
     public ModelAndView editEmployee(@PathVariable int id) {
         ModelAndView model = new ModelAndView();
 
-        Employee employee = employeeService.findEmployeeById(id);
+        Employee employee = employeeService.findById(id);
         System.out.print(employee.toString());
         model.addObject("employeeForm", employee);
 
@@ -55,9 +55,9 @@ public class EmployeeController {
     @RequestMapping(value="/save", method=RequestMethod.POST)
     public ModelAndView saveOrUpdate(@ModelAttribute("employeeForm") Employee employee) {
         if(employee.getEmployeeId() != null) {
-            employeeService.updateEmployee(employee);
+            employeeService.update(employee);
         } else {
-            employeeService.addEmployee(employee);
+            employeeService.add(employee);
         }
 
         return new ModelAndView("redirect:/employee/list");
@@ -65,7 +65,7 @@ public class EmployeeController {
 
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable("id") int id) {
-        employeeService.deleteEmployee(id);
+        employeeService.delete(id);
 
         return new ModelAndView("redirect:/employee/list");
     }
