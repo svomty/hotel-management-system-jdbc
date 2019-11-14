@@ -10,8 +10,11 @@
 <head>
     <title>Main</title>
     <style>
+        body {
+            background: darkcyan;
+        }
         h1 {
-            color: green;
+            color: springgreen;
         }
         table {
             width: 300px; /* Ширина таблицы */
@@ -22,8 +25,9 @@
         }
         button {
             background: green; /* Синий цвет фона */
-            color: white; /* Белые буквы */
+            color: springgreen; /* Белые буквы */
             border-radius: 0 10px;
+            border: 2px solid springgreen;
         }
     </style>
 </head>
