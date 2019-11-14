@@ -29,6 +29,9 @@
             border-radius: 0 10px;
             border: 2px solid springgreen;
         }
+        button:hover {
+            background: darkgreen;
+        }
     </style>
 </head>
 <body>
