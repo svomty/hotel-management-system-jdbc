@@ -20,7 +20,7 @@
     <h2>Apartment</h2>
     <form:form modelAttribute="apartmentForm" method="post" action="${saveURL }" cssClass="form">
         <div class="form-group">
-            <lable for="id">Id</lable>
+            <lable for="id">Номер комнаты</lable>
             <form:input path="id" cssClass="form-control" id="id"/>
         </div>
         <div class="form-group">
