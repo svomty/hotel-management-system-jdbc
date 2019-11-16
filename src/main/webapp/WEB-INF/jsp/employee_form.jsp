@@ -20,7 +20,6 @@
     <h2>Employee</h2>
     <form:form modelAttribute="employeeForm" method="post" action="${saveURL }" cssClass="form">
     <form:hidden path="employeeId"/>
-        <%--c:if test="${empty employeeForm}"--%>
     <div class="form-group">
         <lable for="lastName">Фамилия</lable>
         <form:input path="lastName" cssClass="form-control" id="lastName"/>
@@ -50,8 +49,6 @@
         <form:input path="passportId" cssClass="form-control" id="passportId"/>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-</
-%--c:if--%>
 </form:form>
 </div>
 </body>

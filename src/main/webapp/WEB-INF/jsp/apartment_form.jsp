@@ -16,12 +16,27 @@
 </head>
 <body>
 <div class="container">
-    <spring:url value="/apartment/save" var="saveURL"/>
-    <h2>Apartment</h2>
+
+    <c:if test="${empty apartmentForm.id}">
+        <spring:url value="/apartment/save" var="saveURL"/>
+        <h2>Apartment</h2>
+    </c:if>
+    <c:if test="${!empty apartmentForm.id}">
+        <c:url value="/apartment/edit" var="saveURL"/>
+        <h2>Apartment №${apartmentForm.id}</h2>
+    </c:if>
+
     <form:form modelAttribute="apartmentForm" method="post" action="${saveURL }" cssClass="form">
         <div class="form-group">
-            <lable for="id">Номер комнаты</lable>
-            <form:input path="id" cssClass="form-control" id="id"/>
+            <c:choose>
+                <c:when test="${empty apartmentForm.id}">
+                    <lable for="id">Номер комнаты</lable>
+                    <form:input path="id" cssClass="form-control" id="id"/>
+                </c:when>
+                <c:otherwise>
+                    <form:hidden path="id" cssClass="form-control" id="id"/>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="form-group">
             <lable for="userCells">Количество мест</lable>

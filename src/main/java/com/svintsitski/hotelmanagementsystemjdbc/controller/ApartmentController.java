@@ -19,7 +19,7 @@ public class ApartmentController {
     @Autowired
     private ApartmentServiceImpl apartmentService;
 
-    @RequestMapping(value= {"/", "/list"}, method= RequestMethod.GET)
+    @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public ModelAndView getAllApartments() {
         ModelAndView model = new ModelAndView();
         List<Apartment> list = apartmentService.getAll();
@@ -28,17 +28,20 @@ public class ApartmentController {
         return model;
     }
 
-    @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public ModelAndView editApartment(@PathVariable int id) {
-        ModelAndView model = new ModelAndView();
-        Apartment apartment = apartmentService.findById(id);
-        System.out.print(apartment.toString());
-        model.addObject("apartmentForm", apartment);
-        model.setViewName("apartment_form");
-        return model;
+        try {
+            ModelAndView model = new ModelAndView();
+            Apartment apartment = apartmentService.findById(id);
+            model.addObject("apartmentForm", apartment);
+            model.setViewName("apartment_form");
+            return model;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/apartment/list");//перенаправление на страницу ошибки
+        }
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addApartment() {
         ModelAndView model = new ModelAndView();
         Apartment apartment = new Apartment();
@@ -47,17 +50,23 @@ public class ApartmentController {
         return model;
     }
 
-    @RequestMapping(value="/save", method=RequestMethod.POST)
-    public ModelAndView saveOrUpdate(@ModelAttribute("apartmentForm") Apartment apartment) {
-        if(apartment.getId() != null) {
-            apartmentService.update(apartment);
-        } else {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute("apartmentForm") Apartment apartment) {
+        try {
             apartmentService.add(apartment);
+            return new ModelAndView("redirect:/apartment/list");
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/apartment/list");//перенаправление на страницу ошибки
         }
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView edit(@ModelAttribute("apartmentForm") Apartment apartment) {
+        apartmentService.update(apartment);
         return new ModelAndView("redirect:/apartment/list");
     }
 
-    @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteApartment(@PathVariable("id") int id) {
         apartmentService.delete(id);
         return new ModelAndView("redirect:/apartment/list");
