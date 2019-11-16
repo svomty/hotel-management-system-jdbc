@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/apartment")
+@RequestMapping("/confidential/apartment")
 public class ApartmentController {
 
     @Autowired
@@ -37,7 +37,8 @@ public class ApartmentController {
             model.setViewName("apartment_form");
             return model;
         } catch (Exception e) {
-            return new ModelAndView("redirect:/apartment/list");//перенаправление на страницу ошибки
+            return new ModelAndView("redirect:/confidential/apartment/list");
+            //перенаправление на страницу ошибки
         }
     }
 
@@ -54,21 +55,22 @@ public class ApartmentController {
     public ModelAndView save(@ModelAttribute("apartmentForm") Apartment apartment) {
         try {
             apartmentService.add(apartment);
-            return new ModelAndView("redirect:/apartment/list");
+            return new ModelAndView("redirect:/confidential/apartment/list");
         } catch (Exception e) {
-            return new ModelAndView("redirect:/apartment/list");//перенаправление на страницу ошибки
+            return new ModelAndView("redirect:/confidential/apartment/list");
+            //перенаправление на страницу ошибки
         }
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("apartmentForm") Apartment apartment) {
         apartmentService.update(apartment);
-        return new ModelAndView("redirect:/apartment/list");
+        return new ModelAndView("redirect:/confidential/apartment/list");
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteApartment(@PathVariable("id") int id) {
         apartmentService.delete(id);
-        return new ModelAndView("redirect:/apartment/list");
+        return new ModelAndView("redirect:/confidential/apartment/list");
     }
 }

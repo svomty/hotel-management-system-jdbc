@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,11 +19,11 @@
 <div class="container">
 
     <c:if test="${empty apartmentForm.id}">
-        <spring:url value="/apartment/save" var="saveURL"/>
+        <spring:url value="/confidential/apartment/save" var="saveURL"/>
         <h2>Apartment</h2>
     </c:if>
     <c:if test="${!empty apartmentForm.id}">
-        <c:url value="/apartment/edit" var="saveURL"/>
+        <c:url value="/confidential/apartment/edit" var="saveURL"/>
         <h2>Apartment №${apartmentForm.id}</h2>
     </c:if>
 

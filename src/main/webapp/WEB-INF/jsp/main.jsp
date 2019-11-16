@@ -39,7 +39,7 @@
 <table border="0" width="300px" cellpadding="0">
     <tr>
         <th>
-            <form action="/apartment/list">
+            <form action="/confidential/apartment/list">
                 <button style="width:100%; height:40px;" type="submit">Список апартаментов</button>
             </form>
         </th>

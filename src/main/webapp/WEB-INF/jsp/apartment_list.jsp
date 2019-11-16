@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -34,18 +35,18 @@
                 <td>${apartment.roomCells }</td>
                 <td>${apartment.price }</td>
                 <td>
-                    <spring:url value="/apartment/update/${apartment.id }" var="updateURL" />
+                    <spring:url value="/confidential/apartment/update/${apartment.id }" var="updateURL" />
                     <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
                 </td>
                 <td>
-                    <spring:url value="/apartment/delete/${apartment.id }" var="deleteURL" />
+                    <spring:url value="/confidential/apartment/delete/${apartment.id }" var="deleteURL" />
                     <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <spring:url value="/apartment/add" var="addURL" />
+    <spring:url value="/confidential/apartment/add" var="addURL" />
     <a class="btn btn-primary" href="${addURL }" role="button">Add New Apartment</a>
 </div>
 </body>
