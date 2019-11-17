@@ -80,10 +80,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable("id") int id) {
-        employeeService.delete(id);
-
         Employee employee = employeeService.findById(id);
         inMemoryUserDetailsManager.deleteUser(employee.getPassportId());
+        employeeService.delete(id);
 
         return new ModelAndView("redirect:/confidential/employee/list");
     }
