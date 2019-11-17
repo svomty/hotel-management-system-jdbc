@@ -15,9 +15,10 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         employee.setLastName(rs.getString("фамилия"));
         employee.setPatronymic(rs.getString("отчество"));
         employee.setGender(rs.getString("пол"));
-        employee.setPhone(rs.getString("телефон"));
+        employee.setPhone(rs.getInt("телефон"));
         employee.setAddress(rs.getString("адрес"));
         employee.setPassportId(rs.getString("номер_паспорта"));
+        employee.setPassword(rs.getString("password"));
         return employee;
     }
 

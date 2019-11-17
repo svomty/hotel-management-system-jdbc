@@ -30,21 +30,22 @@ public class ApartmentDaoImpl implements ApartmentDao{
         String query = "SELECT * FROM rooms WHERE id = ?";
         RowMapper<Apartment> rowMapper = new ApartmentRowMapper();
         Apartment apartment = jdbcTemplate.queryForObject(query, rowMapper, id);
-        System.out.println(apartment.toString());
         return apartment;
     }
 
     @Override
     public void add(Apartment apartment) {
         String query = "INSERT INTO rooms(id, userCells, roomCells, price) VALUES(?, ?, ?, ?)";
-        jdbcTemplate.update(query, apartment.getId(), apartment.getUserCells(), apartment.getRoomCells(), apartment.getPrice());
+        jdbcTemplate.update(query, apartment.getId(), apartment.getUserCells(), apartment.getRoomCells(),
+                apartment.getPrice());
 
     }
 
     @Override
     public void update(Apartment apartment) {
         String query = "UPDATE rooms SET userCells=?, roomCells=?, price=? WHERE id=?";
-        jdbcTemplate.update(query, apartment.getUserCells(), apartment.getRoomCells(), apartment.getPrice(), apartment.getId());
+        jdbcTemplate.update(query, apartment.getUserCells(), apartment.getRoomCells(), apartment.getPrice(),
+                apartment.getId());
     }
 
     @Override

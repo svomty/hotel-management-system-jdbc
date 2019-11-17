@@ -25,6 +25,7 @@
             <th scope="row">Телефон</th>
             <th scope="row">Адрес</th>
             <th scope="row">Номер паспорта</th>
+            <th scope="row">Password</th>
             <th scope="row">Edit</th>
             <th scope="row">Delete</th>
         </tr>
@@ -40,6 +41,7 @@
                 <td>${employee.phone }</td>
                 <td>${employee.address }</td>
                 <td>${employee.passportId }</td>
+                <td>${employee.password }</td>
                 <td>
                     <spring:url value="/confidential/employee/update/${employee.employeeId }" var="updateURL" />
                     <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>

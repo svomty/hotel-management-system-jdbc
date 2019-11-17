@@ -1,5 +1,6 @@
 package com.svintsitski.hotelmanagementsystemjdbc.model;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Employee {
@@ -8,9 +9,10 @@ public class Employee {
     private String lastName;
     private String patronymic;
     private String gender;
-    private String phone;
+    private Integer phone;
     private String address;
     private String passportId;
+    private String password;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -52,11 +54,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -76,6 +78,14 @@ public class Employee {
         this.passportId = passportId;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,12 +98,29 @@ public class Employee {
                 Objects.equals(gender, employee.gender) &&
                 Objects.equals(phone, employee.phone) &&
                 Objects.equals(address, employee.address) &&
-                Objects.equals(passportId, employee.passportId);
+                Objects.equals(passportId, employee.passportId) &&
+                Objects.equals(password, employee.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeId, firstName, lastName, patronymic, gender, phone, address, passportId);
+        return Objects.hash(employeeId, firstName, lastName, patronymic, gender, phone, address, passportId, password);
+    }
+
+    public Employee(Integer employeeId, String firstName, String lastName, String patronymic, String gender,
+                    Integer phone, String address, String passportId, String password) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.passportId = passportId;
+        this.password = password;
+    }
+
+    public Employee() {
     }
 
     @Override
@@ -104,23 +131,10 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phone=" + phone +
                 ", address='" + address + '\'' +
                 ", passportId='" + passportId + '\'' +
+                ", password='" + password + '\'' +
                 '}';
-    }
-
-    public Employee(Integer employeeId, String firstName, String lastName, String patronymic, String gender, String phone, String address, String passportId) {
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patronymic = patronymic;
-        this.gender = gender;
-        this.phone = phone;
-        this.address = address;
-        this.passportId = passportId;
-    }
-
-    public Employee() {
     }
 }

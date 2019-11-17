@@ -30,21 +30,26 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String query = "SELECT * FROM employees WHERE id = ?";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         Employee employee = jdbcTemplate.queryForObject(query, rowMapper, id);
-        System.out.println(employee.toString());
         return employee;
     }
 
     @Override
     public void add(Employee employee) {
-        String query = "INSERT INTO employees(id, фамилия, имя, отчество, пол, телефон, адрес, номер_паспорта) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(query, employee.getEmployeeId(), employee.getLastName(), employee.getFirstName(), employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(), employee.getPassportId());
+        String query = "INSERT INTO employees(id, фамилия, имя, отчество, пол, телефон, адрес, номер_паспорта, password)" +
+                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(query, employee.getEmployeeId(), employee.getLastName(), employee.getFirstName(),
+                employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(),
+                employee.getPassportId(), employee.getPassword());
 
     }
 
     @Override
     public void update(Employee employee) {
-        String query = "UPDATE employees SET фамилия=?, имя=?, отчество=?, пол=?, телефон=?, адрес=?, номер_паспорта=? WHERE id=?";
-        jdbcTemplate.update(query, employee.getLastName(), employee.getFirstName(), employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(), employee.getPassportId(), employee.getEmployeeId());
+        String query = "UPDATE employees SET фамилия=?, имя=?, отчество=?, пол=?, телефон=?, адрес=?, " +
+                "номер_паспорта=?, password=? WHERE id=?";
+        jdbcTemplate.update(query, employee.getLastName(), employee.getFirstName(), employee.getPatronymic(),
+                employee.getGender(), employee.getPhone(), employee.getAddress(), employee.getPassportId(),
+                employee.getPassword(), employee.getEmployeeId());
 
     }
 
