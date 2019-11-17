@@ -1,8 +1,6 @@
 package com.svintsitski.hotelmanagementsystemjdbc.service;
 
-import com.svintsitski.hotelmanagementsystemjdbc.dao.ApartmentDaoImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.dao.ZaseleniyeDaoImpl;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

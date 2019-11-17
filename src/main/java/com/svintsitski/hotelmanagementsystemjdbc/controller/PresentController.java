@@ -1,9 +1,7 @@
 package com.svintsitski.hotelmanagementsystemjdbc.controller;
 
-import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
-import com.svintsitski.hotelmanagementsystemjdbc.service.ApartmentServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ZaseleniyeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

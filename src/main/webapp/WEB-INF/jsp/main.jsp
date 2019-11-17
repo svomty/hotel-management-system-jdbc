@@ -65,7 +65,7 @@
     </tr>
     <tr>
         <th>
-            <form action="/employee/list">
+            <form action="/protected/reservation/list">
                 <button style="width:100%; height:40px;" type="submit">Бронирование гостиницы</button>
             </form>
         </th>
