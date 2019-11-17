@@ -38,6 +38,7 @@
         }
 
         #hello {
+            color: paleturquoise;
             position: absolute;
             bottom: 1em;
             right: 1em;
