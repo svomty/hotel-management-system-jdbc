@@ -5,7 +5,7 @@
   Time: 6:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,7 +20,7 @@
         <td>
             <select name="users">
                 <c:forEach items="${users}" var="users">
-                    <option value="${users.id}"><c:out value="${users.name}" /></option>
+                    <option value="${users.id}"><c:out value="${users.name}"/></option>
                 </c:forEach>
             </select>
         </td>

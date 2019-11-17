@@ -3,8 +3,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;

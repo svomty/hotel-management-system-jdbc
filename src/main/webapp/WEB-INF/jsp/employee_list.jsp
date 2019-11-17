@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,7 +31,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${employee_list }" var="employee" >
+        <c:forEach items="${employee_list }" var="employee">
             <tr>
                 <td>${employee.employeeId }</td>
                 <td>${employee.lastName }</td>
@@ -43,18 +43,18 @@
                 <td>${employee.passportId }</td>
                 <td>${employee.password }</td>
                 <td>
-                    <spring:url value="/confidential/employee/update/${employee.employeeId }" var="updateURL" />
+                    <spring:url value="/confidential/employee/update/${employee.employeeId }" var="updateURL"/>
                     <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
                 </td>
                 <td>
-                    <spring:url value="/confidential/employee/delete/${employee.employeeId }" var="deleteURL" />
+                    <spring:url value="/confidential/employee/delete/${employee.employeeId }" var="deleteURL"/>
                     <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <spring:url value="/confidential/employee/add" var="addURL" />
+    <spring:url value="/confidential/employee/add" var="addURL"/>
     <a class="btn btn-success" href="${addURL }" role="button">Добавить нового клиента</a>
     <spring:url value="/" var="link"/>
     <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>

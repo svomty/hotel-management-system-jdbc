@@ -22,7 +22,7 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.svintsitski.hotelmanagementsystemjdbc" })
+@ComponentScan(basePackages = {"com.svintsitski.hotelmanagementsystemjdbc"})
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Аннотация @EnableWebSecurity в связке с WebSecurityConfigurerAdapter классом работает над обеспечением
@@ -45,7 +45,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         manager.createUser(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER")
                 .build());
         List<Employee> list = employeeService.getAll();
-        for (Employee employee : list){
+        for (Employee employee : list) {
             manager.createUser(users.username(employee.getPassportId()).password(employee.getPassword())
                     .roles("ADMIN").build());
         }
@@ -54,8 +54,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager()
-    {
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         List<UserDetails> userDetailsList = new ArrayList<>();
         userDetailsList.add(users.username("user").password("user").roles("USER").build());
@@ -63,7 +62,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         userDetailsList.add(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER")
                 .build());
         List<Employee> list = employeeService.getAll();
-        for (Employee employee : list){
+        for (Employee employee : list) {
             userDetailsList.add(users.username(employee.getPassportId()).password(employee.getPassword())
                     .roles("ADMIN").build());
         }
@@ -86,7 +85,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService());
         auth.userDetailsService(inMemoryUserDetailsManager());
     }
-
 
 
     /**

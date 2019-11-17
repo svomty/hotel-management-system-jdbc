@@ -29,14 +29,14 @@
     <form:form modelAttribute="apartmentForm" method="post" action="${saveURL}" cssClass="form">
         <div class="form-group">
             <c:choose>
-            <c:when test="${empty apartmentForm.id}">
-                <lable for="id">Номер комнаты</lable>
-                <form:input path="id" cssClass="form-control" id="id"/>
-            </c:when>
-            <c:otherwise>
-                <form:hidden path="id" cssClass="form-control" id="id"/>
-            </c:otherwise>
-        </c:choose>
+                <c:when test="${empty apartmentForm.id}">
+                    <lable for="id">Номер комнаты</lable>
+                    <form:input path="id" cssClass="form-control" id="id"/>
+                </c:when>
+                <c:otherwise>
+                    <form:hidden path="id" cssClass="form-control" id="id"/>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="form-group">
             <lable for="userCells">Количество мест</lable>
