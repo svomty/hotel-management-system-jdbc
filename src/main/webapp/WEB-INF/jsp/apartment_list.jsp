@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Apartment List</h2>
+    <h2>Список апартаментов</h2>
     <table class="table table-striped">
         <thead>
         <tr>

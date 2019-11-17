@@ -72,7 +72,7 @@
     </tr>
     <tr>
         <th>
-            <form action="/employee/list">
+            <form action="/confidential/zaseleniye/list">
                 <button style="width:100%; height:40px;" type="submit">Заселение в гостиницу</button>
             </form>
         </th>
