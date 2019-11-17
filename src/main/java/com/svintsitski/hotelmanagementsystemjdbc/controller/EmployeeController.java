@@ -3,6 +3,10 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/confidential/employee")
 public class EmployeeController {
+
+    @Autowired
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
     @Autowired
     private EmployeeServiceImpl employeeService;
@@ -60,6 +67,10 @@ public class EmployeeController {
                 employeeService.add(employee);
             }
 
+            User.UserBuilder users = User.withDefaultPasswordEncoder();
+            inMemoryUserDetailsManager.createUser(users.username(employee.getPassportId())
+                    .password(employee.getPassword()).roles("USER", "ADMIN").build());
+
             return new ModelAndView("redirect:/confidential/employee/list");
         } catch (Exception e) {
             return new ModelAndView("redirect:/confidential/employee/list");
@@ -70,6 +81,9 @@ public class EmployeeController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable("id") int id) {
         employeeService.delete(id);
+
+        Employee employee = employeeService.findById(id);
+        inMemoryUserDetailsManager.deleteUser(employee.getPassportId());
 
         return new ModelAndView("redirect:/confidential/employee/list");
     }

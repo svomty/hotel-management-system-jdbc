@@ -16,19 +16,23 @@
             background: darkcyan;
             color: springgreen;
         }
+
         table {
             width: 300px; /* Ширина таблицы */
             margin: auto; /* Выравниваем таблицу по центру окна  */
         }
+
         td {
             text-align: center; /* Выравниваем текст по центру ячейки */
         }
+
         button {
             background: green; /* Синий цвет фона */
             color: springgreen; /* Белые буквы */
             border-radius: 0 10px;
             border: 2px solid springgreen;
         }
+
         button:hover {
             background: darkgreen;
         }
@@ -84,13 +88,15 @@
             <sec:authorize access="isAuthenticated()">
                 <form action="/logout">
                     <button type="submit" style="background:darkred;color:palevioletred;
-                    border: 2px solid red;width:100%; height:40px;">Эвакуационный выход из аккаунта</button>
+                    border: 2px solid red;width:100%; height:40px;">Эвакуационный выход из аккаунта
+                    </button>
                 </form>
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
                 <form action="/login">
                     <button type="submit" style="background:blue;color:deepskyblue;
-                    border: 2px solid deepskyblue;width:100%; height:40px;">Вход в аккаунт</button>
+                    border: 2px solid deepskyblue;width:100%; height:40px;">Вход в аккаунт
+                    </button>
                 </form>
             </sec:authorize>
         </th>
@@ -98,8 +104,17 @@
 </table>
 
 <sec:authorize access="isAuthenticated()">
-    <sec:authentication var="principal" property="principal" />
-    <span id="hello">Привет, ${principal.username}</span>
+    <sec:authentication var="principal" property="principal"/>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <c:forEach items="${employee_list }" var="employee">
+            <c:if test="${principal.username eq employee.passportId}">
+                <span id="hello">Привет, ${employee.firstName} ${employee.patronymic}</span>
+            </c:if>
+        </c:forEach>
+    </sec:authorize>
+    <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
+        <span id="hello">Привет, ${principal.username}</span>
+    </sec:authorize>
 </sec:authorize>
 
 </body>
