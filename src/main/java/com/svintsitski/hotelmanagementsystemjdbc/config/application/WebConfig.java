@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan({"com.svintsitski.hotelmanagementsystemjdbc.config",
         "com.svintsitski.hotelmanagementsystemjdbc.controller"})
 //указываем фреймворку Spring, что компоненты надо искать внутри пакетов ...
-@Import({ AppSecurityConfig.class })//Импортируем класс с настройками безопасности
+@Import({AppSecurityConfig.class})//Импортируем класс с настройками безопасности
 //мб автоматически найден (без импорта)
 public class WebConfig {
 

@@ -1,6 +1,5 @@
 package com.svintsitski.hotelmanagementsystemjdbc.model;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 public class Employee {

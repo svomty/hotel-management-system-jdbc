@@ -19,7 +19,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeServiceImpl employeeService;
 
-    @RequestMapping(value= {"/", "/list"}, method= RequestMethod.GET)
+    @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public ModelAndView getAllEmployees() {
         ModelAndView model = new ModelAndView();
         List<Employee> list = employeeService.getAll();
@@ -29,7 +29,7 @@ public class EmployeeController {
         return model;
     }
 
-    @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public ModelAndView editEmployee(@PathVariable int id) {
         ModelAndView model = new ModelAndView();
 
@@ -40,7 +40,7 @@ public class EmployeeController {
         return model;
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addEmployee() {
         ModelAndView model = new ModelAndView();
 
@@ -51,7 +51,7 @@ public class EmployeeController {
         return model;
     }
 
-    @RequestMapping(value="/save", method=RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView saveOrUpdate(@ModelAttribute("employeeForm") Employee employee) {
         try {
             if (employee.getEmployeeId() != null) {
@@ -61,13 +61,13 @@ public class EmployeeController {
             }
 
             return new ModelAndView("redirect:/confidential/employee/list");
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ModelAndView("redirect:/confidential/employee/list");
             //перенаправление на страницу ошибки
         }
     }
 
-    @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable("id") int id) {
         employeeService.delete(id);
 

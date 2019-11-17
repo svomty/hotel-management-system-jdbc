@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ApartmentRowMapper  implements RowMapper<Apartment> {
+public class ApartmentRowMapper implements RowMapper<Apartment> {
     @Override
     public Apartment mapRow(ResultSet resultSet, int i) throws SQLException {
         Apartment apartment = new Apartment();

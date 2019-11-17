@@ -35,8 +35,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public void add(Employee employee) {
-        String query = "INSERT INTO employees(id, фамилия, имя, отчество, пол, телефон, адрес, номер_паспорта, password)" +
-                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO employees(id, фамилия, имя, отчество, пол, телефон, адрес, " +
+                "номер_паспорта, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, employee.getEmployeeId(), employee.getLastName(), employee.getFirstName(),
                 employee.getPatronymic(), employee.getGender(), employee.getPhone(), employee.getAddress(),
                 employee.getPassportId(), employee.getPassword());

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ApartmentDaoImpl implements ApartmentDao{
+public class ApartmentDaoImpl implements ApartmentDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
