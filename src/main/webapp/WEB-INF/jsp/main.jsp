@@ -89,7 +89,7 @@
             <sec:authorize access="isAuthenticated()">
                 <form action="/logout">
                     <button type="submit" style="background:darkred;color:palevioletred;
-                    border: 2px solid red;width:100%; height:40px;">Эвакуационный выход из аккаунта
+                    border: 2px solid red;width:100%; height:40px;">Выйти из аккаунта
                     </button>
                 </form>
             </sec:authorize>
