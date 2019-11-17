@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: artem
@@ -12,8 +14,6 @@
     <style>
         body {
             background: darkcyan;
-        }
-        h1 {
             color: springgreen;
         }
         table {
@@ -32,6 +32,13 @@
         button:hover {
             background: darkgreen;
         }
+
+        #hello {
+            position: absolute;
+            bottom: 1em;
+            right: 1em;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -46,7 +53,7 @@
     </tr>
     <tr>
         <th>
-            <form action="/employee/list">
+            <form action="/confidential/employee/list">
                 <button style="width:100%; height:40px;" type="submit">Список клиентов</button>
             </form>
         </th>
@@ -65,6 +72,35 @@
             </form>
         </th>
     </tr>
+    <tr>
+        <th>
+            <form action="/employee/list">
+                <button style="width:100%; height:40px;" type="submit">Отзывы</button>
+            </form>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <sec:authorize access="isAuthenticated()">
+                <form action="/logout">
+                    <button type="submit" style="background:darkred;color:palevioletred;
+                    border: 2px solid red;width:100%; height:40px;">Эвакуационный выход из аккаунта</button>
+                </form>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <form action="/login">
+                    <button type="submit" style="background:blue;color:deepskyblue;
+                    border: 2px solid deepskyblue;width:100%; height:40px;">Вход в аккаунт</button>
+                </form>
+            </sec:authorize>
+        </th>
+    </tr>
 </table>
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication var="principal" property="principal" />
+    <span id="hello">Привет, ${principal.username}</span>
+</sec:authorize>
+
 </body>
 </html>

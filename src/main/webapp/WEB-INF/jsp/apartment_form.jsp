@@ -11,9 +11,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Apartments</title>
-    <link href="http://localhost:8080/webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="http://localhost:8080/webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="http://localhost:8080/webjars/jquery/3.0.0/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -27,7 +26,7 @@
         <h2>Apartment №${apartmentForm.id}</h2>
     </c:if>
 
-    <form:form modelAttribute="apartmentForm" method="post" action="${saveURL }" cssClass="form">
+    <form:form modelAttribute="apartmentForm" method="post" action="${saveURL}" cssClass="form">
         <div class="form-group">
             <c:choose>
                 <c:when test="${empty apartmentForm.id}">
@@ -44,7 +43,7 @@
             <form:input path="userCells" cssClass="form-control" id="userCells"/>
         </div>
         <div class="form-group">
-            <lable for="roomCells">Количесто комнат</lable>
+            <lable for="roomCells">Количество комнат</lable>
             <form:input path="roomCells" cssClass="form-control" id="roomCells"/>
         </div>
         <div class="form-group">

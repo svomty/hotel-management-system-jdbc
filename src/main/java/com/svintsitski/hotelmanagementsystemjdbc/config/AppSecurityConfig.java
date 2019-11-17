@@ -1,9 +1,7 @@
 package com.svintsitski.hotelmanagementsystemjdbc.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +16,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
      * Аннотация @EnableWebSecurity в связке с WebSecurityConfigurerAdapter классом работает над обеспечением
      * аутентификации. По умолчанию в Spring Security встроены и активны HTTP аутентификация и аутентификация на базе
      * веб форм.
+     *
      * @author Артем Свинтицкий
      */
 
@@ -28,7 +27,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(users.username("user").password("user").roles("USER").build());
         manager.createUser(users.username("admin").password("admin").roles("USER", "ADMIN").build());
-        manager.createUser(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER").build());
+        manager.createUser(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER")
+                .build());
         return manager;
 
     }
@@ -39,7 +39,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-                .and().formLogin().defaultSuccessUrl("/", false);
+                .and().formLogin().defaultSuccessUrl("/", false)
+                .and().logout().logoutSuccessUrl("/").permitAll();
 
     }
 

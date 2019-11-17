@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/confidential/employee")
 public class EmployeeController {
 
     @Autowired
@@ -53,19 +53,24 @@ public class EmployeeController {
 
     @RequestMapping(value="/save", method=RequestMethod.POST)
     public ModelAndView saveOrUpdate(@ModelAttribute("employeeForm") Employee employee) {
-        if(employee.getEmployeeId() != null) {
-            employeeService.update(employee);
-        } else {
-            employeeService.add(employee);
-        }
+        try {
+            if (employee.getEmployeeId() != null) {
+                employeeService.update(employee);
+            } else {
+                employeeService.add(employee);
+            }
 
-        return new ModelAndView("redirect:/employee/list");
+            return new ModelAndView("redirect:/confidential/employee/list");
+        }catch (Exception e){
+            return new ModelAndView("redirect:/confidential/employee/list");
+            //перенаправление на страницу ошибки
+        }
     }
 
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable("id") int id) {
         employeeService.delete(id);
 
-        return new ModelAndView("redirect:/employee/list");
+        return new ModelAndView("redirect:/confidential/employee/list");
     }
 }

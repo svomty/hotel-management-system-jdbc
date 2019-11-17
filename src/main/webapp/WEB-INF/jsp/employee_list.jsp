@@ -8,9 +8,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Employee List</title>
-    <link href="../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="../webjars/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-    <script src="../webjars/jquery/3.0.0/js/jquery.min.js" ></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -42,19 +41,21 @@
                 <td>${employee.address }</td>
                 <td>${employee.passportId }</td>
                 <td>
-                    <spring:url value="/employee/update/${employee.employeeId }" var="updateURL" />
+                    <spring:url value="/confidential/employee/update/${employee.employeeId }" var="updateURL" />
                     <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
                 </td>
                 <td>
-                    <spring:url value="/employee/delete/${employee.employeeId }" var="deleteURL" />
+                    <spring:url value="/confidential/employee/delete/${employee.employeeId }" var="deleteURL" />
                     <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <spring:url value="/employee/add" var="addURL" />
-    <a class="btn btn-primary" href="${addURL }" role="button">Add New Employee</a>
+    <spring:url value="/confidential/employee/add" var="addURL" />
+    <a class="btn btn-success" href="${addURL }" role="button">Добавить нового клиента</a>
+    <spring:url value="/" var="link"/>
+    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>
 </div>
 </body>
 </html>
