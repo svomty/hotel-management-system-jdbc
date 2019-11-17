@@ -79,7 +79,7 @@
     </tr>
     <tr>
         <th>
-            <form action="/employee/list">
+            <form action="/reviews/list">
                 <button style="width:100%; height:40px;" type="submit">Отзывы</button>
             </form>
         </th>
