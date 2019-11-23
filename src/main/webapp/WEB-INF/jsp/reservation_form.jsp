@@ -7,6 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,22 +25,34 @@
         <tr>
             <td>Выбрать пользователя для заселения:</td>
             <td>
-                <c:choose>
-                    <c:when test="${empty rooms}">
-                        <form:select path="user_id" name="users" id="users" cssClass="form-control">
-                            <c:forEach items="${employee_list}" var="user">
-                                <form:option value="${user.employeeId}">
-                                    <c:out value="${user.lastName} ${user.firstName} ${user.patronymic} [${user.passportId}]"/>
-                                </form:option>
-                            </c:forEach>
-                        </form:select>
-                    </c:when>
-                    <c:otherwise>
-                        <form:input path="user_id" cssClass="form-control" name="users" id="users"
-                                    value="${reservationForm.user_id}" readonly="true"/>
-                    </c:otherwise>
-                </c:choose>
 
+                <sec:authorize access="isAuthenticated()">
+                <sec:authentication var="principal" property="principal"/>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <c:forEach items="${employee_list }" var="employee">
+                            <c:if test="${principal.username eq employee.passportId}">
+                                <form:input path="user_id" value="${employee.employeeId }" readonly="true"/>
+                            </c:if>
+                    </c:forEach>
+                </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
+                        <c:choose>
+                            <c:when test="${empty rooms}">
+                                <form:select path="user_id" name="users" id="users" cssClass="form-control">
+                                    <c:forEach items="${employee_list}" var="user">
+                                        <form:option value="${user.employeeId}">
+                                            <c:out value="${user.lastName} ${user.firstName} ${user.patronymic} [${user.passportId}]"/>
+                                        </form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </c:when>
+                            <c:otherwise>
+                                <form:input path="user_id" cssClass="form-control" name="users" id="users"
+                                            value="${reservationForm.user_id}" readonly="true"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </sec:authorize>
+                </sec:authorize>
             </td>
         </tr>
         <tr>

@@ -124,6 +124,8 @@ public class ReservationController {
             model.addObject("rooms", freeRooms);
             model.addObject("date", date);
             model.addObject("date2", date2);
+            List<Employee> employees = employeeService.getAll();
+            model.addObject("employee_list", employees);
             model.setViewName("reservation_form");
             return model;
 
