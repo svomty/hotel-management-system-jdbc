@@ -27,7 +27,6 @@
             <th scope="row">Дата отъезда</th>
             <th scope="row">Клиент</th>
             <th scope="row">Апартамент</th>
-            <th scope="row">Edit</th>
             <th scope="row">Delete</th>
         </tr>
         </thead>
@@ -47,11 +46,6 @@
                             <c:if test="${reservation.user_id eq employee.employeeId}">
                                 <c:if test="${principal.username eq employee.passportId}">
                                     <td>
-                                        <spring:url value="/protected/reservation/update/${reservation.id }"
-                                                    var="updateURL"/>
-                                        <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
-                                    </td>
-                                    <td>
                                         <spring:url value="/protected/reservation/delete/${reservation.id }"
                                                     var="deleteURL"/>
                                         <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>
@@ -61,10 +55,6 @@
                         </c:forEach>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
-                        <td>
-                            <spring:url value="/protected/reservation/update/${reservation.id }" var="updateURL"/>
-                            <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
-                        </td>
                         <td>
                             <spring:url value="/protected/reservation/delete/${reservation.id }" var="deleteURL"/>
                             <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>

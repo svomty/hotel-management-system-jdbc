@@ -1,11 +1,19 @@
 package com.svintsitski.hotelmanagementsystemjdbc.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.Objects;
 
 public class Reservation {
     private Integer id;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start_date;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date final_date;
     private Integer user_id;
     private Integer room;
@@ -32,19 +40,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getStart_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Date start_date) {
+    public void setStart_date(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start_date) {
         this.start_date = start_date;
     }
 
-    public Date getFinal_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getFinal_date() {
         return final_date;
     }
 
-    public void setFinal_date(Date final_date) {
+    public void setFinal_date(@DateTimeFormat(pattern = "yyyy-MM-dd") Date final_date) {
         this.final_date = final_date;
     }
 
