@@ -14,4 +14,5 @@ public interface ZaseleniyeDao {
     void update(Zaseleniye zaseleniye);
 
     void delete(int id);
+
 }

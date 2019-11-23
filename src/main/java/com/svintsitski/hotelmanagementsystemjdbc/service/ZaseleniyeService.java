@@ -14,4 +14,6 @@ public interface ZaseleniyeService {
     void update(Zaseleniye zaseleniye);
 
     void delete(int id);
+
+    List<Zaseleniye> free(String startDate, String finalDate);
 }

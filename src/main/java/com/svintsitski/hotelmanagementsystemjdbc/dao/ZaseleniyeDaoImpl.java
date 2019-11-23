@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Transactional
@@ -22,6 +24,14 @@ public class ZaseleniyeDaoImpl implements ZaseleniyeDao {
         String query = "SELECT * from hotel_iteration WHERE iteration_type='zaseleniye'";
         RowMapper<Zaseleniye> rowMapper = new ZaseleniyeRowMapper();
         List<Zaseleniye> list = jdbcTemplate.query(query, rowMapper);
+        return list;
+    }
+
+
+    public List<Zaseleniye> getFreeApart(String startDate, String finalDate) {
+        String query = "SELECT * from hotel_iteration WHERE ? < final_date and ? > start_date";
+        RowMapper<Zaseleniye> rowMapper = new ZaseleniyeRowMapper();
+        List<Zaseleniye> list =  jdbcTemplate.query(query, rowMapper, startDate, finalDate);
         return list;
     }
 

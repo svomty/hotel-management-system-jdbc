@@ -37,7 +37,6 @@
             <th scope="row">Дата отъезда</th>
             <th scope="row">Клиент</th>
             <th scope="row">Апартамент</th>
-            <th scope="row">Edit</th>
             <th scope="row">Delete</th>
         </tr>
         </thead>
@@ -53,10 +52,6 @@
                     </c:if>
                 </c:forEach>
                 <td>${zaseleniye.room }</td>
-                <td>
-                    <spring:url value="/confidential/zaseleniye/update/${zaseleniye.id }" var="updateURL"/>
-                    <a class="btn btn-primary" href="${updateURL }" role="button">Update</a>
-                </td>
                 <td>
                     <spring:url value="/confidential/zaseleniye/delete/${zaseleniye.id }" var="deleteURL"/>
                     <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>

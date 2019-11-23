@@ -37,4 +37,9 @@ public class ZaseleniyeServiceImpl implements ZaseleniyeService {
     public void delete(int id) {
         zaseleniyeDao.delete(id);
     }
+
+    @Override
+    public List<Zaseleniye> free(String startDate, String finalDate){
+        return zaseleniyeDao.getFreeApart(startDate, finalDate);
+    }
 }
