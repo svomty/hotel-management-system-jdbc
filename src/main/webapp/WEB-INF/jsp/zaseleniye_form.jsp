@@ -106,7 +106,7 @@
     function setInputDate(_id) {
         var _dat = document.querySelector(_id);
         var hoy = new Date(),
-            d = hoy.getDate() + 1,
+            d = hoy.getDate(),
             m = hoy.getMonth() + 1,
             y = hoy.getFullYear(),
             data;
