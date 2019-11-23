@@ -35,7 +35,7 @@
                     </c:when>
                     <c:otherwise>
                         <form:input path="user_id" cssClass="form-control" name="users" id="users"
-                                    value="${zaseleniyeForm.user_id}" readonly="readonly"/>
+                                    value="${zaseleniyeForm.user_id}" readonly="true"/>
                     </c:otherwise>
                 </c:choose>
 
@@ -50,7 +50,7 @@
                     </c:when>
                     <c:otherwise>
                         <form:input type="date" name="start" id="start" path="start_date" cssClass="form-control"
-                                    value="${date}"/>
+                                    value="${date}" readonly="true"/>
                     </c:otherwise>
                 </c:choose>
             </td>
@@ -64,14 +64,13 @@
                     </c:when>
                     <c:otherwise>
                         <form:input type="date" name="final" id="final" path="final_date" cssClass="form-control"
-                                    value="${date2}"/>
+                                    value="${date2}" readonly="true"/>
                     </c:otherwise>
                 </c:choose>
             </td>
         </tr>
         <tr>
             <td>
-                <!--button onclick="find()" type="button" class="btn btn-primary">Поиск свободных апартаментов</button-->
                 <c:if test="${empty rooms}">
                     <form:button type="submit" class="btn btn-primary">Поиск свободных апартаментов</form:button>
                 </c:if>
@@ -103,10 +102,10 @@
 </form:form>
 
 <script type="text/javascript">
-    function setInputDate(_id) {
+    function setInputDate(_id, count) {
         var _dat = document.querySelector(_id);
         var hoy = new Date(),
-            d = hoy.getDate(),
+            d = hoy.getDate() + count,
             m = hoy.getMonth() + 1,
             y = hoy.getFullYear(),
             data;
@@ -124,27 +123,9 @@
         _dat.value = data;
     };
 
-    function setInputDate2(_id) {
-        var _dat = document.querySelector(_id);
-        var hoy = new Date(),
-            d = hoy.getDate() + 1,
-            m = hoy.getMonth() + 1,
-            y = hoy.getFullYear(),
-            data;
-        if (d < 10) {
-            d = "0" + d;
-        }
-        ;
-        if (m < 10) {
-            m = "0" + m;
-        }
-        ;
-        data = y + "-" + m + "-" + d;
-        _dat.value = data;
-    };
     <c:if test="${empty rooms}">
-    setInputDate("#start");
-    setInputDate2("#final");
+    setInputDate("#start", 0);
+    setInputDate("#final", 1);
     </c:if>
 
 </script>
