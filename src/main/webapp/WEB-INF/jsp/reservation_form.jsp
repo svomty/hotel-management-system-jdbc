@@ -41,7 +41,8 @@
                                 <form:select path="user_id" name="users" id="users" cssClass="form-control">
                                     <c:forEach items="${employee_list}" var="user">
                                         <form:option value="${user.employeeId} " cssClass="form-control">
-                                            <c:out value="${user.lastName} ${user.firstName} ${user.patronymic} [${user.passportId}]"/>
+                                            <c:out value="${user.lastName} ${user.firstName} ${user.patronymic}
+                                            [${user.passportId}]"/>
                                         </form:option>
                                     </c:forEach>
                                 </form:select>

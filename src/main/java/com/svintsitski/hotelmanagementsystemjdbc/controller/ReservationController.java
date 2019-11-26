@@ -119,6 +119,10 @@ public class ReservationController {
                 b = true;
             }
 
+            if (localDate.isAfter(localDate2)){
+                throw new IllegalArgumentException("Неверные даты");
+            }
+
             ModelAndView model = new ModelAndView();
             model.addObject("reservationForm", reservation);
             model.addObject("rooms", freeRooms);

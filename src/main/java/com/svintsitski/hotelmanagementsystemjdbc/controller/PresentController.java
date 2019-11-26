@@ -123,6 +123,10 @@ public class PresentController {
                 b = true;
             }
 
+            if (localDate.isAfter(localDate2)){
+                throw new IllegalArgumentException("Неверные даты");
+            }
+
             ModelAndView model = new ModelAndView();
             model.addObject("zaseleniyeForm", zaseleniye);
             model.addObject("rooms", freeRooms);
