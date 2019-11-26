@@ -100,6 +100,31 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf.tool</groupId>
+            <artifactId>xmlworker</artifactId>
+            <version>5.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pd4ml</groupId>
+            <artifactId>pd4ml</artifactId>
+            <version>[4.0.0,)</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -128,6 +153,14 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>pd4ml</id>
+            <name>PD4ML Repository</name>
+            <url>https://pd4ml.tech/maven2/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -145,6 +178,14 @@
             <url>https://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>pd4ml</id>
+            <name>PD4ML Repository</name>
+            <url>https://pd4ml.tech/maven2/</url>
+            <snapshots>
+                <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>

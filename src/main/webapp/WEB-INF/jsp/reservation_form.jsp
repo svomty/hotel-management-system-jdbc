@@ -117,6 +117,9 @@
 </form:form>
 
 <script type="text/javascript">
+    function getHTML(){
+        alert(document.documentElement.innerHTML);
+    }
     function setInputDate(_id, count) {
         var _dat = document.querySelector(_id);
         var hoy = new Date(),
