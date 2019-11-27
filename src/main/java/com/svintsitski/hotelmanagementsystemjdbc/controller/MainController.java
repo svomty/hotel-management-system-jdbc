@@ -24,6 +24,17 @@ public class MainController {
     @Autowired
     private ApartmentServiceImpl apartmentService;
 
+    @RequestMapping(value = {"/employee_report"}, method = RequestMethod.GET)
+    public ModelAndView getAllEmployees() {
+        ModelAndView model = new ModelAndView();
+        List<Employee> list = employeeService.getAll();
+        Date date = new Date();
+        model.addObject("date", date.toString());
+        model.addObject("employee_list", list);
+        model.setViewName("employee_report");
+        return model;
+    }
+
     @RequestMapping(value = {"/apartment_report"}, method = RequestMethod.GET)
     public ModelAndView getAllApartments() {
         ModelAndView model = new ModelAndView();
@@ -33,9 +44,6 @@ public class MainController {
         model.addObject("apartment_list", list);
         model.addObject("date", date.toString());
         model.setViewName("apartment_report");
-
-        // Вывод текущей даты и времени с использованием toString()
-        System.out.println(date.toString());
         return model;
     }
 
