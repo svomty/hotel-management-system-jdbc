@@ -14,7 +14,7 @@
                 screenWidth="1000"
                 pageFormat="A4"
                 pageOrientation="landscape"
-                pageInsets="50,15,15,15,points"
+                pageInsets="15,15,15,15,points"
                 inline="true"
                 fileName="employees.pdf">
             <head>

@@ -19,7 +19,7 @@
         screenWidth="1000"
         pageFormat="A4"
         pageOrientation="portrait"
-        pageInsets="25,15,25,15,points"
+        pageInsets="15,15,25,15,points"
         inline="true"
         fileName="zaseleniye.pdf">
 <head>
@@ -48,7 +48,8 @@
                 <td>${zaseleniye.final_date}</td>
                 <c:forEach items="${employee_list }" var="employee">
                     <c:if test="${employee.employeeId eq zaseleniye.user_id}">
-                        <td><p>${zaseleniye.user_id } ${employee.lastName} ${employee.firstName}</p></td>
+                        <td><p>${zaseleniye.user_id } ${employee.lastName} ${employee.firstName}
+                            [phone:${employee.phone}]</p></td>
                     </c:if>
                 </c:forEach>
                 <td>${zaseleniye.room }</td>

@@ -18,7 +18,7 @@
                 screenWidth="1000"
                 pageFormat="A4"
                 pageOrientation="portrait"
-                pageInsets="25,15,25,15,points"
+                pageInsets="15,15,25,15,points"
                 inline="true"
                 fileName="reservation.pdf">
             <head>
@@ -64,7 +64,12 @@
                                 <td>${reservation.id }</td>
                                 <td>${reservation.start_date }</td>
                                 <td>${reservation.final_date}</td>
-                                <td>${reservation.user_id }</td>
+                                <c:forEach items="${employee_list }" var="employee">
+                                    <c:if test="${employee.employeeId eq reservation.user_id}">
+                                        <td><p>${reservation.user_id } ${employee.lastName} ${employee.firstName}
+                                            [phone:${employee.phone}]</p></td>
+                                    </c:if>
+                                </c:forEach>
                                 <td>${reservation.room }</td>
                             </tr>
                         </sec:authorize>
