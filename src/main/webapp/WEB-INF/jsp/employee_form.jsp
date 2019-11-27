@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,7 +32,10 @@
         </div>
         <div class="form-group">
             <lable for="gender">Пол</lable>
-            <form:input path="gender" cssClass="form-control" id="gender"/>
+            <form:select path="gender" name="gender" id="gender" cssClass="form-control">
+                <form:option value="male">male</form:option>
+                <form:option value="female">female</form:option>
+            </form:select>
         </div>
         <div class="form-group">
             <lable for="phone">Контактный телефон</lable>

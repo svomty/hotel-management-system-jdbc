@@ -2,8 +2,12 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
+import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
+import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ApartmentServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
+import com.svintsitski.hotelmanagementsystemjdbc.service.ReservationServiceImpl;
+import com.svintsitski.hotelmanagementsystemjdbc.service.ZaseleniyeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +24,15 @@ public class MainController {
 
     @Autowired
     private EmployeeServiceImpl employeeService;
-
     @Autowired
     private ApartmentServiceImpl apartmentService;
+    @Autowired
+    private ReservationServiceImpl reservationService;
+    @Autowired
+    private ZaseleniyeServiceImpl zaseleniyeService;
 
-    @RequestMapping(value = {"/employee_report"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/reports/employee"}, method = RequestMethod.GET)
     public ModelAndView getAllEmployees() {
         ModelAndView model = new ModelAndView();
         List<Employee> list = employeeService.getAll();
@@ -35,11 +43,10 @@ public class MainController {
         return model;
     }
 
-    @RequestMapping(value = {"/apartment_report"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/reports/apartment"}, method = RequestMethod.GET)
     public ModelAndView getAllApartments() {
         ModelAndView model = new ModelAndView();
         Date date = new Date();
-        System.out.println(date.toString());
         List<Apartment> list = apartmentService.getAll();
         model.addObject("apartment_list", list);
         model.addObject("date", date.toString());
@@ -56,6 +63,32 @@ public class MainController {
         model.addObject("employee_list", list);
 
         model.setViewName("main");
+        return model;
+    }
+
+    @RequestMapping(value = {"/reports/reservation"}, method = RequestMethod.GET)
+    public ModelAndView getAllBron() {
+        ModelAndView model = new ModelAndView();
+        List<Reservation> list = reservationService.getAll();
+        model.addObject("reservation_list", list);
+        Date date = new Date();
+        model.addObject("date", date.toString());
+        List<Employee> employees = employeeService.getAll();
+        model.addObject("employee_list", employees);
+        model.setViewName("reservation_report");
+        return model;
+    }
+
+    @RequestMapping(value = {"/reports/zaseleniye"}, method = RequestMethod.GET)
+    public ModelAndView getAllZaseleniye() {
+        ModelAndView model = new ModelAndView();
+        List<Zaseleniye> list = zaseleniyeService.getAll();
+        model.addObject("zaseleniye_list", list);
+        Date date = new Date();
+        model.addObject("date", date.toString());
+        List<Employee> employees = employeeService.getAll();
+        model.addObject("employee_list", employees);
+        model.setViewName("zaseleniye_report");
         return model;
     }
 }

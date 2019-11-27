@@ -18,14 +18,28 @@
 </head>
 <body>
 <div class="container">
-    <h2>Список забронированных номеров</h2>
+    <table class="table table-striped">
+        <tr>
+            <td><h2>Список забронированных номеров</h2></td>
+            <td>
+                <div align="right">
+                    <form action="/reports/reservation">
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="row">Id заселения</th>
             <th scope="row">Дата приезда</th>
             <th scope="row">Дата отъезда</th>
-            <th scope="row">Клиент</th>
+            <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
+                <th scope="row">Клиент</th>
+            </sec:authorize>
             <th scope="row">Апартамент</th>
             <th scope="row">Delete</th>
         </tr>
@@ -33,18 +47,16 @@
         <tbody>
         <c:forEach items="${reservation_list }" var="reservation">
             <tr>
-                <td>${reservation.id }</td>
-                <td>${reservation.start_date }</td>
-                <td>${reservation.final_date}</td>
-                <td>${reservation.user_id }</td>
-                <td>${reservation.room }</td>
-
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication var="principal" property="principal"/>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <c:forEach items="${employee_list }" var="employee">
                             <c:if test="${reservation.user_id eq employee.employeeId}">
                                 <c:if test="${principal.username eq employee.passportId}">
+                                    <td>${reservation.id }</td>
+                                    <td>${reservation.start_date }</td>
+                                    <td>${reservation.final_date}</td>
+                                    <td>${reservation.room }</td>
                                     <td>
                                         <spring:url value="/protected/reservation/delete/${reservation.id }"
                                                     var="deleteURL"/>
@@ -55,6 +67,11 @@
                         </c:forEach>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
+                        <td>${reservation.id }</td>
+                        <td>${reservation.start_date }</td>
+                        <td>${reservation.final_date}</td>
+                        <td>${reservation.user_id }</td>
+                        <td>${reservation.room }</td>
                         <td>
                             <spring:url value="/protected/reservation/delete/${reservation.id }" var="deleteURL"/>
                             <a class="btn btn-primary" href="${deleteURL }" role="button">Delete</a>

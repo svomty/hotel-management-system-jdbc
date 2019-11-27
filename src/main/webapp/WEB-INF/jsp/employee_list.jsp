@@ -13,7 +13,20 @@
 </head>
 <body>
 <div class="container">
-    <h2>Список клиентов</h2>
+
+    <table  class="table table-striped">
+        <tr>
+            <td><h2>Список клиентов</h2></td>
+            <td>
+                <div align="right">
+                    <form action="/reports/employee">
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+
     <table class="table table-striped">
         <thead>
         <tr>

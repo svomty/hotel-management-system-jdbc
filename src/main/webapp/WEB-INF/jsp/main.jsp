@@ -13,8 +13,8 @@
     <title>Main</title>
     <style>
         body {
-            background: darkcyan;
-            color: springgreen;
+            background: wheat;
+            color: green;
         }
 
         table {
@@ -38,7 +38,7 @@
         }
 
         #hello {
-            color: paleturquoise;
+            color: green;
             position: absolute;
             bottom: 1em;
             right: 1em;
