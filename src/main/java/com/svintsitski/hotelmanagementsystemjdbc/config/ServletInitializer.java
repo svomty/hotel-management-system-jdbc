@@ -1,9 +1,7 @@
-package com.svintsitski.hotelmanagementsystemjdbc;
+package com.svintsitski.hotelmanagementsystemjdbc.config;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.ViewResolver;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 

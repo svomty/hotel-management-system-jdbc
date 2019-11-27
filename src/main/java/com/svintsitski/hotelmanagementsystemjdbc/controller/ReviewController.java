@@ -1,10 +1,8 @@
 package com.svintsitski.hotelmanagementsystemjdbc.controller;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Review;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
-import com.svintsitski.hotelmanagementsystemjdbc.service.ReservationServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,8 +52,8 @@ public class ReviewController {
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.POST)
     public ModelAndView add(@ModelAttribute("reviewForm") Review review) {
         try {
-        service.add(review);
-        return new ModelAndView("redirect:/reviews/list");
+            service.add(review);
+            return new ModelAndView("redirect:/reviews/list");
         } catch (Exception e) {
             return new ModelAndView("redirect:/reviews/list");
             //перенаправление на страницу ошибки

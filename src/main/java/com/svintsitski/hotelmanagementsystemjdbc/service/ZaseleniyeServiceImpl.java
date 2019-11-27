@@ -39,7 +39,7 @@ public class ZaseleniyeServiceImpl implements ZaseleniyeService {
     }
 
     @Override
-    public List<Zaseleniye> free(String startDate, String finalDate){
+    public List<Zaseleniye> free(String startDate, String finalDate) {
         return zaseleniyeDao.getFreeApart(startDate, finalDate);
     }
 }

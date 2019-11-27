@@ -2,8 +2,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.dao;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Review;
 import com.svintsitski.hotelmanagementsystemjdbc.model.ReviewRowMapper;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
-import com.svintsitski.hotelmanagementsystemjdbc.model.ZaseleniyeRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

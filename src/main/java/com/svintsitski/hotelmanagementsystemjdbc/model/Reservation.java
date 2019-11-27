@@ -40,7 +40,8 @@ public class Reservation {
         this.id = id;
     }
 
-    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getStart_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date getStart_date() {
         return start_date;
     }
 
@@ -48,7 +49,8 @@ public class Reservation {
         this.start_date = start_date;
     }
 
-    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getFinal_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date getFinal_date() {
         return final_date;
     }
 

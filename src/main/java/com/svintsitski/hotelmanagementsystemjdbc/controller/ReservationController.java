@@ -3,11 +3,9 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ApartmentServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ReservationServiceImpl;
-import com.svintsitski.hotelmanagementsystemjdbc.service.ZaseleniyeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -73,13 +71,13 @@ public class ReservationController {
         reservation.setFinal_date(reservation.getFinal_date());
         reservation.setStart_date(reservation.getStart_date());
         if (reservation.getRoom() != null) {
-        try {
-            service.add(reservation);
-            return new ModelAndView("redirect:/protected/reservation/list");
-        } catch (Exception e) {
-            return new ModelAndView("redirect:/protected/reservation/list");
-            //перенаправление на страницу ошибки
-        }
+            try {
+                service.add(reservation);
+                return new ModelAndView("redirect:/protected/reservation/list");
+            } catch (Exception e) {
+                return new ModelAndView("redirect:/protected/reservation/list");
+                //перенаправление на страницу ошибки
+            }
         } else {
 
             Date start_date = reservation.getStart_date();
@@ -90,8 +88,8 @@ public class ReservationController {
             int year = localDate.getYear();
             int month = localDate.getMonthValue();
             int day = localDate.getDayOfMonth();
-            String day_s = (day<10)? "0"+day : ""+day;
-            String month_s = (month<10)? "0"+month : ""+month;
+            String day_s = (day < 10) ? "0" + day : "" + day;
+            String month_s = (month < 10) ? "0" + month : "" + month;
             String date = year + "-" + month_s + "-" + day_s;
 
             LocalDate localDate2 = final_date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -99,27 +97,27 @@ public class ReservationController {
             int month2 = localDate2.getMonthValue();
             int day2 = localDate2.getDayOfMonth();
 
-            String day2_s = (day2<10)? "0"+day2 : ""+day2;
-            String month2_s = (month2<10)? "0"+month2 : ""+month2;
+            String day2_s = (day2 < 10) ? "0" + day2 : "" + day2;
+            String month2_s = (month2 < 10) ? "0" + month2 : "" + month2;
             String date2 = year2 + "-" + month2_s + "-" + day2_s;
 
             System.out.println(date + " " + date2);
             List<Reservation> roomsN = service.free(date, date2);
             List<Apartment> freeRooms = new ArrayList<>();
             boolean b = true;
-            for (Apartment a : rooms){
-                for (Reservation num : roomsN){
-                    if (num.getRoom().equals(a.getId())){
+            for (Apartment a : rooms) {
+                for (Reservation num : roomsN) {
+                    if (num.getRoom().equals(a.getId())) {
                         b = false;
                     }
                 }
-                if (b){
+                if (b) {
                     freeRooms.add(a);
                 }
                 b = true;
             }
 
-            if (localDate.isAfter(localDate2)){
+            if (localDate.isAfter(localDate2)) {
                 throw new IllegalArgumentException("Неверные даты");
             }
 

@@ -2,7 +2,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.service;
 
 import com.svintsitski.hotelmanagementsystemjdbc.dao.ReservationDaoImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> free(String startDate, String finalDate){
+    public List<Reservation> free(String startDate, String finalDate) {
         return dao.getFreeApart(startDate, finalDate);
     }
 }

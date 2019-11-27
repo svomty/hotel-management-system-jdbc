@@ -2,8 +2,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.dao;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
 import com.svintsitski.hotelmanagementsystemjdbc.model.ReservationRowMapper;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
-import com.svintsitski.hotelmanagementsystemjdbc.model.ZaseleniyeRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,7 +28,7 @@ public class ReservationDaoImpl implements ReservationDao {
     public List<Reservation> getFreeApart(String startDate, String finalDate) {
         String query = "SELECT * from hotel_iteration WHERE ? < final_date and ? > start_date";
         RowMapper<Reservation> rowMapper = new ReservationRowMapper();
-        List<Reservation> list =  jdbcTemplate.query(query, rowMapper, startDate, finalDate);
+        List<Reservation> list = jdbcTemplate.query(query, rowMapper, startDate, finalDate);
         return list;
     }
 

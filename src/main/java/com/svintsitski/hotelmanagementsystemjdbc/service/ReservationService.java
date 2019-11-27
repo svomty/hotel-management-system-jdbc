@@ -1,7 +1,6 @@
 package com.svintsitski.hotelmanagementsystemjdbc.service;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 
 import java.util.List;
 

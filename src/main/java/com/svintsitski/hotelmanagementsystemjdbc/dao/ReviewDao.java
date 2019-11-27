@@ -1,7 +1,6 @@
 package com.svintsitski.hotelmanagementsystemjdbc.dao;
 
 import com.svintsitski.hotelmanagementsystemjdbc.model.Review;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Zaseleniye;
 
 import java.util.List;
 

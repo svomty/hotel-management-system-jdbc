@@ -39,20 +39,22 @@ public class Zaseleniye {
         this.id = id;
     }
 
-    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getStart_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date getStart_date() {
         return start_date;
     }
 
     public void setStart_date(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start_date) {
-            this.start_date = start_date;
+        this.start_date = start_date;
     }
 
-    public @DateTimeFormat(pattern = "yyyy-MM-dd") Date getFinal_date() {
+    public @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date getFinal_date() {
         return final_date;
     }
 
     public void setFinal_date(@DateTimeFormat(pattern = "yyyy-MM-dd") Date final_date) {
-            this.final_date = final_date;
+        this.final_date = final_date;
     }
 
     public Integer getUser_id() {
