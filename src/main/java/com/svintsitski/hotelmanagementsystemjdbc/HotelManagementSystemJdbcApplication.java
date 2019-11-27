@@ -2,6 +2,8 @@ package com.svintsitski.hotelmanagementsystemjdbc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.ViewResolver;
 
 import java.io.IOException;
 
@@ -21,5 +23,4 @@ public class HotelManagementSystemJdbcApplication {
         Runtime rt = Runtime.getRuntime();
         rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:8181");
     }
-
 }
