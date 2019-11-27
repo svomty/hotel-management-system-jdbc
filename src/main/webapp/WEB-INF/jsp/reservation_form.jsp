@@ -25,15 +25,15 @@
             <td>Выбрать пользователя для заселения:</td>
             <td>
                 <sec:authorize access="isAuthenticated()">
-                <sec:authentication var="principal" property="principal"/>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <c:forEach items="${employee_list }" var="employee">
+                    <sec:authentication var="principal" property="principal"/>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <c:forEach items="${employee_list }" var="employee">
                             <c:if test="${principal.username eq employee.passportId}">
                                 <form:input path="user_id" value="${employee.employeeId }" readonly="true"
                                             cssClass="form-control"/>
                             </c:if>
-                    </c:forEach>
-                </sec:authorize>
+                        </c:forEach>
+                    </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
                         <c:choose>
                             <c:when test="${empty rooms}">
@@ -48,7 +48,7 @@
                             </c:when>
                             <c:otherwise>
                                 <form:input path="user_id" cssClass="form-control" name="users" id="users"
-                                            value="${reservationForm.user_id}" readonly="true" />
+                                            value="${reservationForm.user_id}" readonly="true"/>
                             </c:otherwise>
                         </c:choose>
                     </sec:authorize>

@@ -44,20 +44,20 @@
                     <tbody>
                     <c:forEach items="${reservation_list }" var="reservation">
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <sec:authorize access="!hasRole('ROLE_SUPERADMIN')">
-                            <c:forEach items="${employee_list }" var="employee">
-                                <c:if test="${reservation.user_id eq employee.employeeId}">
-                                    <c:if test="${principal.username eq employee.passportId}">
-                                        <tr>
-                                            <td>${reservation.id }</td>
-                                            <td>${reservation.start_date }</td>
-                                            <td>${reservation.final_date}</td>
-                                            <td>${reservation.room }</td>
-                                        </tr>
+                            <sec:authorize access="!hasRole('ROLE_SUPERADMIN')">
+                                <c:forEach items="${employee_list }" var="employee">
+                                    <c:if test="${reservation.user_id eq employee.employeeId}">
+                                        <c:if test="${principal.username eq employee.passportId}">
+                                            <tr>
+                                                <td>${reservation.id }</td>
+                                                <td>${reservation.start_date }</td>
+                                                <td>${reservation.final_date}</td>
+                                                <td>${reservation.room }</td>
+                                            </tr>
+                                        </c:if>
                                     </c:if>
-                                </c:if>
-                            </c:forEach>
-                        </sec:authorize>
+                                </c:forEach>
+                            </sec:authorize>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
                             <tr>

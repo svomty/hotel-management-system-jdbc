@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 
-    <table  class="table table-striped">
+    <table class="table table-striped">
         <tr>
             <td><h2>Список клиентов</h2></td>
             <td>

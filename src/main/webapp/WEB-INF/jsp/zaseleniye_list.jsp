@@ -20,6 +20,7 @@
             transition: 1s;
             pointer-events: none;
         }
+
         [data-tooltip]:hover::after {
             opacity: 1;
         }
