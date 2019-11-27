@@ -12,18 +12,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Заселенные в гостиницу</title>
+    <title>Hotel Reservation List</title>
     <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <table class="table table-striped">
         <tr>
-            <td><h2>Список забронированных номеров</h2></td>
+            <td><h2>List of booked rooms</h2></td>
             <td>
                 <div align="right">
                     <form action="/reports/reservation">
-                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Make report</button>
                     </form>
                 </div>
             </td>
@@ -33,13 +33,13 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="row">Id заселения</th>
-            <th scope="row">Дата приезда</th>
-            <th scope="row">Дата отъезда</th>
+            <th scope="row">Id Check In</th>
+            <th scope="row">Start date</th>
+            <th scope="row">Final date</th>
             <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
-                <th scope="row">Клиент</th>
+                <th scope="row">User</th>
             </sec:authorize>
-            <th scope="row">Апартамент</th>
+            <th scope="row">Apartment</th>
             <th scope="row">Delete</th>
         </tr>
         </thead>
@@ -84,9 +84,9 @@
         </tbody>
     </table>
     <spring:url value="/protected/reservation/add" var="addURL"/>
-    <a class="btn btn-success" href="${addURL }" role="button">Забронировать место</a>
+    <a class="btn btn-success" href="${addURL }" role="button">Add hotel reservation</a>
     <spring:url value="/" var="link"/>
-    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>
+    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Main menu</a>
 </div>
 </body>
 </html>

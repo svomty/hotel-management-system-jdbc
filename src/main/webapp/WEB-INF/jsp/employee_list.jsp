@@ -15,11 +15,11 @@
 
     <table class="table table-striped">
         <tr>
-            <td><h2>Список клиентов</h2></td>
+            <td><h2>Users list</h2></td>
             <td>
                 <div align="right">
                     <form action="/reports/employee">
-                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Make report</button>
                     </form>
                 </div>
             </td>
@@ -29,14 +29,14 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="row">Идентификатор пользователя</th>
-            <th scope="row">Фамилия</th>
-            <th scope="row">Имя</th>
-            <th scope="row">Отчество</th>
-            <th scope="row">Пол</th>
-            <th scope="row">Телефон</th>
-            <th scope="row">Адрес</th>
-            <th scope="row">Номер паспорта</th>
+            <th scope="row">User Id</th>
+            <th scope="row">Last name</th>
+            <th scope="row">First name</th>
+            <th scope="row">Patronymic</th>
+            <th scope="row">Gender</th>
+            <th scope="row">Phone</th>
+            <th scope="row">Home address</th>
+            <th scope="row">Passport data</th>
             <th scope="row">Password</th>
             <th scope="row">Edit</th>
             <th scope="row">Delete</th>
@@ -67,9 +67,9 @@
         </tbody>
     </table>
     <spring:url value="/confidential/employee/add" var="addURL"/>
-    <a class="btn btn-success" href="${addURL }" role="button">Добавить нового клиента</a>
+    <a class="btn btn-success" href="${addURL }" role="button">Add new user</a>
     <spring:url value="/" var="link"/>
-    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>
+    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Main menu</a>
 </div>
 </body>
 </html>

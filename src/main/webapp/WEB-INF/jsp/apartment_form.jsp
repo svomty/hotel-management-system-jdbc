@@ -29,7 +29,7 @@
         <div class="form-group">
             <c:choose>
                 <c:when test="${empty apartmentForm.id}">
-                    <lable for="id">Номер комнаты</lable>
+                    <lable for="id">Room number</lable>
                     <form:input path="id" cssClass="form-control" id="id"/>
                 </c:when>
                 <c:otherwise>
@@ -38,15 +38,15 @@
             </c:choose>
         </div>
         <div class="form-group">
-            <lable for="userCells">Количество мест</lable>
+            <lable for="userCells">Number of seats</lable>
             <form:input path="userCells" cssClass="form-control" id="userCells"/>
         </div>
         <div class="form-group">
-            <lable for="roomCells">Количество комнат</lable>
+            <lable for="roomCells">Number of rooms</lable>
             <form:input path="roomCells" cssClass="form-control" id="roomCells"/>
         </div>
         <div class="form-group">
-            <lable for="price">Цена за одно место</lable>
+            <lable for="price">Price for one place</lable>
             <form:input path="price" cssClass="form-control" id="price"/>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>

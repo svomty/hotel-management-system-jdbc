@@ -36,7 +36,7 @@
                         <th scope="row">Start_date</th>
                         <th scope="row">Final_date</th>
                         <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
-                            <th scope="row">Client</th>
+                            <th scope="row">User</th>
                         </sec:authorize>
                         <th scope="row">Apartment</th>
                     </tr>

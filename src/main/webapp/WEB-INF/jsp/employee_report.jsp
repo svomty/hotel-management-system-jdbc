@@ -16,15 +16,15 @@
                 pageOrientation="landscape"
                 pageInsets="15,15,15,15,points"
                 inline="true"
-                fileName="employees.pdf">
+                fileName="users.pdf">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>employees.pdf"</title>
+                <title>users.pdf"</title>
                 <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
             </head>
             <body>
             <div class="container">
-                <h2 align="center">Employee list</h2>
+                <h2 align="center">Users list</h2>
                 <table class="table table-striped">
                     <thead>
                     <tr>

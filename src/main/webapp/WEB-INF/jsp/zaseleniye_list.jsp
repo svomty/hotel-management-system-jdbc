@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Заселенные в гостиницу</title>
+    <title>Checked into the hotel list</title>
     <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
     <style>
         [data-tooltip]::after {
@@ -30,11 +30,11 @@
 <div class="container">
     <table class="table table-striped">
         <tr>
-            <td><h2>Список заселенных в гостиницу</h2></td>
+            <td><h2>Checked into the hotel list</h2></td>
             <td>
                 <div align="right">
                     <form action="/reports/zaseleniye">
-                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Make report</button>
                     </form>
                 </div>
             </td>
@@ -44,11 +44,11 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="row">Id заселения</th>
-            <th scope="row">Дата приезда</th>
-            <th scope="row">Дата отъезда</th>
-            <th scope="row">Клиент</th>
-            <th scope="row">Апартамент</th>
+            <th scope="row">Id Check In</th>
+            <th scope="row">Start date</th>
+            <th scope="row">Final date</th>
+            <th scope="row">User</th>
+            <th scope="row">Apartment</th>
             <th scope="row">Delete</th>
         </tr>
         </thead>
@@ -73,9 +73,9 @@
         </tbody>
     </table>
     <spring:url value="/confidential/zaseleniye/add" var="addURL"/>
-    <a class="btn btn-success" href="${addURL }" role="button">Заселить гостя</a>
+    <a class="btn btn-success" href="${addURL }" role="button">Check in a guest at the hotel</a>
     <spring:url value="/" var="link"/>
-    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>
+    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Main menu</a>
 </div>
 </body>
 </html>

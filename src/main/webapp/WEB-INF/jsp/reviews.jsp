@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Отзывы</title>
+    <title>Reviews</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
     <style>
@@ -70,9 +70,9 @@
 </head>
 <body>
 <div class="container2">
-    <h2 style="align:center;" class="alignleft">Отзывы</h2>
+    <h2 style="align:center;" class="alignleft">Reviews</h2>
     <spring:url value="/" var="link"/>
-    <a class="btn btn-primary alignright" href="${link}" role="button">Главное меню</a>
+    <a class="btn btn-primary alignright" href="${link}" role="button">Main menu</a>
 </div>
 <br>
 <c:forEach items="${reviews}" var="review">
@@ -93,7 +93,7 @@
             <c:if test="${principal.username eq employee.passportId}">
             <spring:url
                     value="/reviews/delete/${review.id }" var="deleteURL"/>
-            <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Удалить отзыв</a></p>
+            <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Delete review</a></p>
         </c:if>
         </c:if>
         </c:forEach>
@@ -101,7 +101,7 @@
         <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
             <spring:url
                     value="/reviews/delete/${review.id }" var="deleteURL"/>
-            <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Удалить отзыв</a></p>
+            <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Delete review</a></p>
         </sec:authorize>
         </sec:authorize>
         <p>${review.text}</p>
@@ -111,17 +111,17 @@
     <sec:authorize access="!hasRole('ROLE_SUPERADMIN')">
         <form:form modelAttribute="reviewForm" method="post" action="${saveURL }" cssClass="form">
             <div class="container3">
-                <span>Написать отзыв</span>
+                <span>Write a review</span>
                 <sec:authentication var="principal" property="principal"/>
                 <c:forEach items="${employee_list }" var="employee">
                     <c:if test="${principal.username eq employee.passportId}">
                         <form:hidden path="user_id" value="${employee.employeeId}"/>
                     </c:if>
                 </c:forEach>
-                <p>Оцените гостиницу по шкале от 1 до 5: <form:input path="mark" cssClass="form-control" value="5"
+                <p>Rate the hotel on a scale of 1 to 5: <form:input path="mark" cssClass="form-control" value="5"
                                                                      type="number" name="quantity" min="1" max="5"/></p>
-                <p>Комментарий:<Br><form:textarea path="text" cssClass="form-control" cols="40" rows="3"/></p>
-                <input type="submit" class="btn btn-success" value="Добавить отзыв">
+                <p>Comment:<Br><form:textarea path="text" cssClass="form-control" cols="40" rows="3"/></p>
+                <input type="submit" class="btn btn-success" value="Add a review">
             </div>
         </form:form>
     </sec:authorize>

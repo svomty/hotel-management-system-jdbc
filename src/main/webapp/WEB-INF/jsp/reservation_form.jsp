@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Бронирование</title>
+    <title>Hotel reservation</title>
     <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
@@ -22,7 +22,7 @@
     <form:hidden path="iteration_type" value="bron"/>
     <table>
         <tr>
-            <td>Выбрать пользователя для заселения:</td>
+            <td>Select a user to check in:</td>
             <td>
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication var="principal" property="principal"/>
@@ -56,7 +56,7 @@
             </td>
         </tr>
         <tr>
-            <td>Дата начала заселения:</td>
+            <td>Start date:</td>
             <td>
                 <c:choose>
                     <c:when test="${empty rooms}">
@@ -70,7 +70,7 @@
             </td>
         </tr>
         <tr>
-            <td>Дата уезда:</td>
+            <td>Final date:</td>
             <td>
                 <c:choose>
                     <c:when test="${empty rooms}">
@@ -86,7 +86,7 @@
         <tr>
             <td>
                 <c:if test="${empty rooms}">
-                    <form:button type="submit" class="btn btn-primary">Поиск свободных апартаментов</form:button>
+                    <form:button type="submit" class="btn btn-primary">Search available apartments</form:button>
                 </c:if>
 
             </td>
@@ -94,14 +94,14 @@
         <c:if test="${!empty rooms}">
             <tr>
                 <td>
-                    Выбор апартамента:
+                    Choose an apartment:
                 </td>
                 <td>
                     <form:select path="room" name="rooms" id="rooms" cssClass="form-control">
                         <c:forEach items="${rooms}" var="room">
                             <form:option value="${room.id}">
-                                <c:out value="[${room.id}] Комнат:${room.roomCells} Мест:${room.userCells}
-                                    Итоговая цена:${room.price*room.userCells} Цена за место: ${room.price}"/>
+                                <c:out value="[${room.id}] Rooms:${room.roomCells} Places:${room.userCells}
+                                    Total price:${room.price*room.userCells} Price of one place: ${room.price}"/>
                             </form:option>
                         </c:forEach>
                     </form:select>
@@ -110,7 +110,7 @@
         </c:if>
     </table>
     <c:if test="${!empty rooms}">
-        <form:button type="submit" class="btn btn-primary">Заселить</form:button>
+        <form:button type="submit" class="btn btn-primary">Check into a hotel</form:button>
     </c:if>
 
 </form:form>

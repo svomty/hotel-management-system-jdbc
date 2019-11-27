@@ -8,18 +8,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Employee List</title>
+    <title>Apartments List</title>
     <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <table class="table table-striped">
         <tr>
-            <td><h2>Список апартаментов</h2></td>
+            <td><h2>Apartments list</h2></td>
             <td>
                 <div align="right">
                     <form action="/reports/apartment">
-                        <button style="width:100%;" class="btn btn-dark" type="submit">Сделать отчет</button>
+                        <button style="width:100%;" class="btn btn-dark" type="submit">Make report</button>
                     </form>
                 </div>
             </td>
@@ -29,10 +29,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="row">Номер комнаты</th>
-            <th scope="row">Количество мест</th>
-            <th scope="row">Количество комнат</th>
-            <th scope="row">Стоимость за одно место</th>
+            <th scope="row">Room number</th>
+            <th scope="row">Number of seats</th>
+            <th scope="row">Number of rooms</th>
+            <th scope="row">Price for one place</th>
             <th scope="row">Edit</th>
             <th scope="row">Delete</th>
         </tr>
@@ -57,9 +57,9 @@
         </tbody>
     </table>
     <spring:url value="/confidential/apartment/add" var="addURL"/>
-    <a class="btn btn-success" href="${addURL}" role="button">Добавить новый апартамент</a>
+    <a class="btn btn-success" href="${addURL}" role="button">Add new apartment</a>
     <spring:url value="/" var="link"/>
-    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Главное меню</a>
+    <a class="btn btn-danger" href="${link}" role="button" style="float: right;">Main menu</a>
 </div>
 </body>
 </html>
