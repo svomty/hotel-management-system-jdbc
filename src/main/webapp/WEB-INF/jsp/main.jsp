@@ -13,8 +13,8 @@
     <title>Main</title>
     <style>
         body {
-            background: wheat;
-            color: green;
+            background: darkgray;
+            color: black;
         }
 
         table {
@@ -52,7 +52,7 @@
         }
 
         #hello {
-            color: green;
+            color: black;
             position: absolute;
             bottom: 1em;
             right: 1em;
@@ -193,7 +193,7 @@
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <c:forEach items="${employee_list }" var="employee">
             <c:if test="${principal.username eq employee.passportId}">
-                <span id="hello">Привет, ${employee.firstName} ${employee.patronymic}</span>
+                <span id="hello">Hello, ${employee.firstName} ${employee.patronymic}</span>
             </c:if>
         </c:forEach>
     </sec:authorize>
