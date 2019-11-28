@@ -69,6 +69,7 @@
     </style>
 </head>
 <body>
+<c:set var="salary" scope="session" value="  "/>
 <div class="container2">
     <h2 style="align:center;" class="alignleft">Reviews</h2>
     <spring:url value="/" var="link"/>
@@ -91,6 +92,7 @@
             <c:forEach items="${employee_list }" var="employee">
             <c:if test="${review.user_id eq employee.employeeId}">
             <c:if test="${principal.username eq employee.passportId}">
+            <c:set var="salary" scope="session" value="${employee.password}"/>
             <spring:url
                     value="/reviews/delete/${review.id }" var="deleteURL"/>
             <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Delete review</a></p>
@@ -100,7 +102,7 @@
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
             <spring:url
-                    value="/reviews/delete/${review.id }" var="deleteURL"/>
+                    value="/reviews/delete/${review}" var="deleteURL"/>
             <a class="btn btn-danger alignright" href="${deleteURL }" role="button">Delete review</a></p>
         </sec:authorize>
         </sec:authorize>
@@ -109,21 +111,25 @@
 </c:forEach>
 <sec:authorize access="isAuthenticated()">
     <sec:authorize access="!hasRole('ROLE_SUPERADMIN')">
-        <form:form modelAttribute="reviewForm" method="post" action="${saveURL }" cssClass="form">
-            <div class="container3">
-                <span>Write a review</span>
-                <sec:authentication var="principal" property="principal"/>
-                <c:forEach items="${employee_list }" var="employee">
-                    <c:if test="${principal.username eq employee.passportId}">
-                        <form:hidden path="user_id" value="${employee.employeeId}"/>
-                    </c:if>
-                </c:forEach>
-                <p>Rate the hotel on a scale of 1 to 5: <form:input path="mark" cssClass="form-control" value="5"
-                                                                     type="number" name="quantity" min="1" max="5"/></p>
-                <p>Comment:<Br><form:textarea path="text" cssClass="form-control" cols="40" rows="3"/></p>
-                <input type="submit" class="btn btn-success" value="Add a review">
-            </div>
-        </form:form>
+        <sec:authentication var="principal" property="principal"/>
+        <c:forEach items="${employee_list }" var="employee">
+            <c:if test="${principal.username eq employee.passportId}">
+                <c:if test="${!salary.equals(principal.username)}">
+                    <form:form modelAttribute="reviewForm" method="post" action="${saveURL }" cssClass="form">
+                        <div class="container3">
+                            <span>Write a review</span>
+                            <form:hidden path="user_id" value="${employee.employeeId}"/>
+                            <p>Rate the hotel on a scale of 1 to 5: <form:input path="mark" cssClass="form-control"
+                                                                                value="5"
+                                                                                type="number" name="quantity" min="1"
+                                                                                max="5"/></p>
+                            <p>Comment:<Br><form:textarea path="text" cssClass="form-control" cols="40" rows="3"/></p>
+                            <input type="submit" class="btn btn-success" value="Add a review">
+                        </div>
+                    </form:form>
+                </c:if>
+            </c:if>
+        </c:forEach>
     </sec:authorize>
 </sec:authorize>
 
