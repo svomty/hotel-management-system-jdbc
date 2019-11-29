@@ -20,7 +20,9 @@
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>apartments.pdf</title>
-                <link href="/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    <%@ include file="/WEB-INF/css/bootstrap.min.css" %>"/>
+                </style>
             </head>
             <body>
             <div class="container">

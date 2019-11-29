@@ -10,7 +10,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="pd4ml" uri="http://pd4ml.com/tlds/4.0" %>
-<html>
 <sec:authorize access="isAuthenticated()">
     <sec:authentication var="principal" property="principal"/>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -21,10 +20,13 @@
                 pageInsets="15,15,25,15,points"
                 inline="true"
                 fileName="reservation.pdf">
+            <html>
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>reservation.pdf</title>
-                <link href="/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    <%@ include file="/WEB-INF/css/bootstrap.min.css" %>"/>
+                </style>
             </head>
             <body>
             <div class="container">
@@ -77,9 +79,9 @@
                     </tbody>
                 </table>
             </div>
-            <div align="right">${date}</div>
             </body>
+            </html>
+            <div align="right">${date}</div>
         </pd4ml:transform>
     </sec:authorize>
 </sec:authorize>
-</html>
