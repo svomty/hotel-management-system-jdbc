@@ -3,7 +3,6 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
-import com.svintsitski.hotelmanagementsystemjdbc.model.Review;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ApartmentServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ReservationServiceImpl;
@@ -119,16 +118,10 @@ public class ReservationController {
         }
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView edit(@ModelAttribute("reservationForm") Reservation reservation) {
-        service.update(reservation);
-        return new ModelAndView("redirect:/protected/reservation/list");
-    }
-
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteBron(@PathVariable("id") int id, @CookieValue(value = "role", required = false) Cookie role,
                                    @CookieValue(value = "login", required = false) Cookie login) {
-        if (role.getValue().equals("ROLE_SUPERADMIN")){
+        if (role.getValue().equals("ROLE_SUPERADMIN")) {
             service.delete(id);
         } else if (role.getValue().equals("ROLE_ADMIN")) {
             List<Reservation> reservations = service.getAll();

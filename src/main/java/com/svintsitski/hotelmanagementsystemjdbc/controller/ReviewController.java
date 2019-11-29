@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
-import java.rmi.AccessException;
 import java.util.List;
 
 @Controller
@@ -59,16 +58,16 @@ public class ReviewController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable("id") int id, @CookieValue(value = "role", required = false) Cookie role,
                                @CookieValue(value = "login", required = false) Cookie login) {
-        if (role.getValue().equals("ROLE_SUPERADMIN")){
+        if (role.getValue().equals("ROLE_SUPERADMIN")) {
             service.delete(id);
         } else if (role.getValue().equals("ROLE_ADMIN")) {
             List<Review> reviews = service.getAll();
-            for (Review review : reviews){
-                if (review.getId().equals(id)){//поиск отзыва
+            for (Review review : reviews) {
+                if (review.getId().equals(id)) {//поиск отзыва
                     List<Employee> employees = employeeService.getAll();
-                    for (Employee employee : employees){
-                        if (employee.getEmployeeId().equals(review.getUser_id())){//поиск пользователя
-                            if (employee.getPassportId().equals(login.getValue())){
+                    for (Employee employee : employees) {
+                        if (employee.getEmployeeId().equals(review.getUser_id())) {//поиск пользователя
+                            if (employee.getPassportId().equals(login.getValue())) {
                                 service.delete(id);
                                 break;
                             }
