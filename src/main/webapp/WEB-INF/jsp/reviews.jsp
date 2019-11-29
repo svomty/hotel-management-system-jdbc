@@ -15,7 +15,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Reviews</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container3 {
             border: 2px solid #ccc;
@@ -78,7 +78,7 @@
 <br>
 <c:forEach items="${reviews}" var="review">
     <div class="container3">
-        <img src="https://www.seekpng.com/png/detail/41-410093_circled-user-icon-user-profile-icon-png.png" alt="Avatar"
+        <img src="/img/userProfile.jpg" alt="Avatar"
              style="width:90px">
         <p><c:forEach items="${employee_list }" var="employee">
             <c:if test="${employee.employeeId eq review.user_id}">

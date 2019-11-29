@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Checked into the hotel list</title>
-    <link href="<c:url value="/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style>
         [data-tooltip]::after {
             content: attr(data-tooltip); /* Выводим текст */
