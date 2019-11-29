@@ -11,7 +11,5 @@ public interface ReviewDao {
 
     void add(Review review);
 
-    void update(Review review);
-
     void delete(int id);
 }

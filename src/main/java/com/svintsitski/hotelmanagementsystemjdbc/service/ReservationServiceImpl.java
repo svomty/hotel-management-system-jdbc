@@ -29,11 +29,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void update(Reservation reservation) {
-        dao.update(reservation);
-    }
-
-    @Override
     public void delete(int id) {
         dao.delete(id);
     }

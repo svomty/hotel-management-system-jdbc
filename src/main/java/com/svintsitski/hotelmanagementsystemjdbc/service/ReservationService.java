@@ -11,8 +11,6 @@ public interface ReservationService {
 
     void add(Reservation reservation);
 
-    void update(Reservation reservation);
-
     void delete(int id);
 
     List<Reservation> free(String startDate, String finalDate);

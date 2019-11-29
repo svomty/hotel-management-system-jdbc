@@ -40,12 +40,6 @@ public class ReviewDaoImpl implements ReviewDao {
     }
 
     @Override
-    public void update(Review review) {
-        String query = "UPDATE reviews SET `user_id`=?, text=?, mark=? WHERE id=?";
-        jdbcTemplate.update(query, review.getUser_id(), review.getText(), review.getMark(), review.getId());
-    }
-
-    @Override
     public void delete(int id) {
         String query = "DELETE FROM reviews WHERE id=?";
         jdbcTemplate.update(query, id);

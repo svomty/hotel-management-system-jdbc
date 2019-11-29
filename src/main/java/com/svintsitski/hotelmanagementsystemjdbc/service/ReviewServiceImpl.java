@@ -29,11 +29,6 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void update(Review review) {
-        dao.update(review);
-    }
-
-    @Override
     public void delete(int id) {
         dao.delete(id);
     }

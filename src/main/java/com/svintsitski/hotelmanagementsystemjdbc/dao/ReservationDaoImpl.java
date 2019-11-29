@@ -49,14 +49,6 @@ public class ReservationDaoImpl implements ReservationDao {
     }
 
     @Override
-    public void update(Reservation reservation) {
-        String query = "UPDATE hotel_iteration SET start_date=?, final_date=?, user_id=?, room=?, iteration_type=? " +
-                "WHERE id=?";
-        jdbcTemplate.update(query, reservation.getStart_date(), reservation.getFinal_date(),
-                reservation.getUser_id(), reservation.getRoom(), reservation.getIteration_type(), reservation.getId());
-    }
-
-    @Override
     public void delete(int id) {
         String query = "DELETE FROM hotel_iteration WHERE id=?";
         jdbcTemplate.update(query, id);
