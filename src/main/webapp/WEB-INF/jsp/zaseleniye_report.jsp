@@ -35,11 +35,13 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="row">ZaseleniyeId</th>
+                        <th scope="row">Id</th>
                         <th scope="row">Start_date</th>
                         <th scope="row">Final_date</th>
                         <th scope="row">Client</th>
                         <th scope="row">Apartment</th>
+                        <th scope="row">Places</th>
+                        <th scope="row">Total price</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +57,12 @@
                                 </c:if>
                             </c:forEach>
                             <td>${zaseleniye.room }</td>
+                            <c:forEach items="${apartments_list }" var="room">
+                                <c:if test="${room.id.equals(zaseleniye.room)}">
+                                    <td>${room.userCells}</td>
+                                    <td>${room.userCells * room.price}</td>
+                                </c:if>
+                            </c:forEach>
                         </tr>
                     </c:forEach>
                     </tbody>

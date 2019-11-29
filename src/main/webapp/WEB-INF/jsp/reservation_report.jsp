@@ -34,13 +34,15 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="row">ReservationId</th>
+                        <th scope="row">Id</th>
                         <th scope="row">Start_date</th>
                         <th scope="row">Final_date</th>
                         <sec:authorize access="hasRole('ROLE_SUPERADMIN')">
                             <th scope="row">User</th>
                         </sec:authorize>
                         <th scope="row">Apartment</th>
+                        <th scope="row">Places</th>
+                        <th scope="row">Total price</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +57,12 @@
                                                 <td>${reservation.start_date }</td>
                                                 <td>${reservation.final_date}</td>
                                                 <td>${reservation.room }</td>
+                                                <c:forEach items="${apartments_list }" var="room">
+                                                    <c:if test="${room.id.equals(reservation.room)}">
+                                                        <td>${room.userCells}</td>
+                                                        <td>${room.userCells * room.price}</td>
+                                                    </c:if>
+                                                </c:forEach>
                                             </tr>
                                         </c:if>
                                     </c:if>
@@ -73,6 +81,12 @@
                                     </c:if>
                                 </c:forEach>
                                 <td>${reservation.room }</td>
+                                <c:forEach items="${apartments_list }" var="room">
+                                    <c:if test="${room.id.equals(reservation.room)}">
+                                        <td>${room.userCells}</td>
+                                        <td>${room.userCells * room.price}</td>
+                                    </c:if>
+                                </c:forEach>
                             </tr>
                         </sec:authorize>
                     </c:forEach>

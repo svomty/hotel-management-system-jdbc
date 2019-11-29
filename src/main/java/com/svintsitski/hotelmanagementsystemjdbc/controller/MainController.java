@@ -74,6 +74,8 @@ public class MainController {
         model.addObject("date", date.toString());
         List<Employee> employees = employeeService.getAll();
         model.addObject("employee_list", employees);
+        List<Apartment> apartments = apartmentService.getAll();
+        model.addObject("apartments_list", apartments);
         model.setViewName("reservation_report");
         return model;
     }
@@ -87,6 +89,8 @@ public class MainController {
         model.addObject("date", date.toString());
         List<Employee> employees = employeeService.getAll();
         model.addObject("employee_list", employees);
+        List<Apartment> apartments = apartmentService.getAll();
+        model.addObject("apartments_list", apartments);
         model.setViewName("zaseleniye_report");
         return model;
     }
