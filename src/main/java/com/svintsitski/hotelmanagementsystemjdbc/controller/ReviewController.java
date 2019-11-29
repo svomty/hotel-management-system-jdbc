@@ -34,20 +34,6 @@ public class ReviewController {
         return model;
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public ModelAndView editBron(@PathVariable int id) {
-        try {
-            ModelAndView model = new ModelAndView();
-            Review review = service.findById(id);
-            model.addObject("reviewForm", review);
-            model.setViewName("review_form");
-            return model;
-        } catch (Exception e) {
-            return new ModelAndView("redirect:/reviews/list");
-            //перенаправление на страницу ошибки
-        }
-    }
-
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.POST)
     public ModelAndView add(@ModelAttribute("reviewForm") Review review) {
         try {
@@ -68,12 +54,6 @@ public class ReviewController {
             return new ModelAndView("redirect:/reviews/list");
             //перенаправление на страницу ошибки
         }
-    }
-
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView edit(@ModelAttribute("reviewForm") Review review) {
-        service.update(review);
-        return new ModelAndView("redirect:/reviews/list");
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
