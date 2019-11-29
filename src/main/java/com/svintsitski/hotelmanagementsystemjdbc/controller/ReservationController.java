@@ -3,17 +3,16 @@ package com.svintsitski.hotelmanagementsystemjdbc.controller;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Apartment;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Employee;
 import com.svintsitski.hotelmanagementsystemjdbc.model.Reservation;
+import com.svintsitski.hotelmanagementsystemjdbc.model.Review;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ApartmentServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ReservationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -39,20 +38,6 @@ public class ReservationController {
         model.addObject("employee_list", employees);
         model.setViewName("reservation_list");
         return model;
-    }
-
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public ModelAndView editBron(@PathVariable int id) {
-        try {
-            ModelAndView model = new ModelAndView();
-            Reservation reservation = service.findById(id);
-            model.addObject("reservationForm", reservation);
-            model.setViewName("reservation_form");
-            return model;
-        } catch (Exception e) {
-            return new ModelAndView("redirect:/protected/reservation/list");
-            //перенаправление на страницу ошибки
-        }
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -141,8 +126,26 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteBron(@PathVariable("id") int id) {
-        service.delete(id);
+    public ModelAndView deleteBron(@PathVariable("id") int id, @CookieValue(value = "role", required = false) Cookie role,
+                                   @CookieValue(value = "login", required = false) Cookie login) {
+        if (role.getValue().equals("ROLE_SUPERADMIN")){
+            service.delete(id);
+        } else if (role.getValue().equals("ROLE_ADMIN")) {
+            List<Reservation> reservations = service.getAll();
+            for (Reservation reservation : reservations) {
+                if (reservation.getId().equals(id)) {//поиск брони
+                    List<Employee> employees = employeeService.getAll();
+                    for (Employee employee : employees) {
+                        if (employee.getEmployeeId().equals(reservation.getUser_id())) {//поиск пользователя
+                            if (employee.getPassportId().equals(login.getValue())) {
+                                service.delete(id);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return new ModelAndView("redirect:/protected/reservation/list");
     }
 }

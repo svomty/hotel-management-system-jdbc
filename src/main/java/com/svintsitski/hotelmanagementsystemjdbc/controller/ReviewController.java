@@ -6,12 +6,11 @@ import com.svintsitski.hotelmanagementsystemjdbc.service.EmployeeServiceImpl;
 import com.svintsitski.hotelmanagementsystemjdbc.service.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import java.rmi.AccessException;
 import java.util.List;
 
 @Controller
@@ -78,8 +77,28 @@ public class ReviewController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView delete(@PathVariable("id") int id) {
-        service.delete(id);
+    public ModelAndView delete(@PathVariable("id") int id, @CookieValue(value = "role", required = false) Cookie role,
+                               @CookieValue(value = "login", required = false) Cookie login) {
+        if (role.getValue().equals("ROLE_SUPERADMIN")){
+            service.delete(id);
+        } else if (role.getValue().equals("ROLE_ADMIN")) {
+            List<Review> reviews = service.getAll();
+            for (Review review : reviews){
+                if (review.getId().equals(id)){//поиск отзыва
+                    List<Employee> employees = employeeService.getAll();
+                    for (Employee employee : employees){
+                        if (employee.getEmployeeId().equals(review.getUser_id())){//поиск пользователя
+                            if (employee.getPassportId().equals(login.getValue())){
+                                service.delete(id);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Недостаточно прав");
+        }
         return new ModelAndView("redirect:/reviews/list");
     }
 }

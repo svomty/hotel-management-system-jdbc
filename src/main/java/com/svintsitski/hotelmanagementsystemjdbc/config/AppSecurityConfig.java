@@ -40,9 +40,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("user").roles("USER").build());
         manager.createUser(users.username("admin").password("admin").roles("USER", "ADMIN").build());
-        manager.createUser(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER")
+        manager.createUser(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN")
                 .build());
         List<Employee> list = employeeService.getAll();
         for (Employee employee : list) {
@@ -57,9 +56,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         List<UserDetails> userDetailsList = new ArrayList<>();
-        userDetailsList.add(users.username("user").password("user").roles("USER").build());
-        userDetailsList.add(users.username("admin").password("admin").roles("USER", "ADMIN").build());
-        userDetailsList.add(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN", "USER")
+        userDetailsList.add(users.username("superadmin").password("superadmin").roles("SUPERADMIN", "ADMIN")
                 .build());
         List<Employee> list = employeeService.getAll();
         for (Employee employee : list) {
@@ -75,7 +72,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-                .and().formLogin().defaultSuccessUrl("/", false)
+                .and().formLogin().defaultSuccessUrl("/", true)
                 .and().logout().logoutSuccessUrl("/").permitAll();
 
     }

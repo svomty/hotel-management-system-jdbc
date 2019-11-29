@@ -61,6 +61,29 @@
     </style>
 </head>
 <body>
+
+<%
+    if (request.isUserInRole("ROLE_SUPERADMIN")){
+        javax.servlet.http.Cookie cookieRole = new javax.servlet.http.Cookie("role", "ROLE_SUPERADMIN");
+        response.addCookie(cookieRole);
+        javax.servlet.http.Cookie cookieLogin
+                = new javax.servlet.http.Cookie("login", null);
+        response.addCookie(cookieLogin);
+    } else if (request.isUserInRole("ROLE_ADMIN")){
+        javax.servlet.http.Cookie cookieRole = new javax.servlet.http.Cookie("role", "ROLE_ADMIN");
+        response.addCookie(cookieRole);
+        javax.servlet.http.Cookie cookieLogin
+                = new javax.servlet.http.Cookie("login", request.getUserPrincipal().getName());
+        response.addCookie(cookieLogin);
+    }else {
+        javax.servlet.http.Cookie cookieRole = new javax.servlet.http.Cookie("role", "ROLE_DEFAULT");
+        response.addCookie(cookieRole);
+        javax.servlet.http.Cookie cookieLogin
+                = new javax.servlet.http.Cookie("login", null);
+        response.addCookie(cookieLogin);
+    }
+%>
+
 <h1 align="center">Main menu</h1>
 <table border="0" width="300px" cellpadding="0">
 <sec:authorize access="isAuthenticated()">
